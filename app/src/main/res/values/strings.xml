@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Wish a Dish frags</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Peter Parker</string>
+    <string name="nav_header_subtitle">ptpk53@outlook.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Waitlist</string>
+    <string name="menu_slideshow">Current Orders</string>
+    <string name="menu_tools">All Bills</string>
+    <string name="menu_share">Settings</string>
+    <string name="menu_send">View Employee</string>
+
+    <string name="type">Type</string>
+
+    <string-array name="item_type">
+        <item>VEG</item>
+        <item>NON-VEG</item>
+        <item>Chapati</item>
+    </string-array>
+
+    <string name="printerType">Type</string>
+
+    <string-array name="printer_name">
+        <item>EPSON</item>
+        <item>CANON</item>
+    </string-array>
+
+    <string name="paymentMethod">Method</string>
+
+    <string-array name="payment_method">
+        <item>Method</item>
+        <item>Cash</item>
+        <item>Card</item>
+        <item>PayTM</item>
+        <item>Google Pay</item>
+        <item>BHIM</item>
+    </string-array>
+
+</resources>

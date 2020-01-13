@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/fragment_share">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TABLE MODE"
+                android:textSize="14sp"
+                android:textColor="#ee1e1e1e"
+                android:textFontWeight="900"
+                android:layout_marginStart="17dp"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"/>
+
+            <Switch
+                android:id="@+id/tableModeSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#8080CBC4"
+                android:scaleX="1.1"
+                android:scaleY="1.1"
+                android:theme="@style/SCBSwitch"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="26dp" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="17dp"
+                android:text="SERVICE CHARGE"
+                android:textColor="#ee1e1e1e"
+                android:textStyle="bold"
+                android:textFontWeight="900"
+                android:textSize="14sp" />
+
+            <Switch
+                android:id="@+id/serviceChargeSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#8080CBC4"
+                android:scaleX="1.1"
+                android:scaleY="1.1"
+                android:theme="@style/SCBSwitch"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="26dp" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HAPPY HOURS"
+                android:textSize="14sp"
+                android:textColor="#ee1e1e1e"
+                android:textFontWeight="900"
+                android:textStyle="bold"
+                android:layout_marginStart="17dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"/>
+
+            <Switch
+                android:id="@+id/happyHoursSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#8080CBC4"
+                android:scaleX="1.1"
+                android:scaleY="1.1"
+                android:theme="@style/SCBSwitch"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="26dp" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PRINTER NAME"
+                android:textSize="14sp"
+                android:textColor="#ee1e1e1e"
+                android:textStyle="bold"
+                android:textFontWeight="900"
+                android:layout_marginStart="17dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:id="@+id/printerNameTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="EPSON"
+                android:textFontWeight="900"
+                android:clickable="true"
+                android:textColor="#ee1e1e1e"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="26dp" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="KOT"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="#ee1e1e1e"
+            android:textFontWeight="900"
+            android:layout_marginStart="34dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"/>
+
+        <Switch
+            android:id="@+id/kotSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#8080CBC4"
+            android:scaleX="1.1"
+            android:scaleY="1.1"
+            android:theme="@style/SCBSwitch"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CODELESS MODE"
+            android:textSize="14sp"
+            android:textColor="#ee1e1e1e"
+            android:textStyle="bold"
+            android:textFontWeight="900"
+            android:layout_marginStart="34dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"/>
+
+        <Switch
+            android:id="@+id/codelessModeSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#8080CBC4"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:scaleX="1.1"
+            android:scaleY="1.1"
+            android:theme="@style/SCBSwitch"
+            android:layout_marginEnd="41dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GST INCLUSIVE"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="#ee1e1e1e"
+            android:textFontWeight="900"
+            android:layout_marginStart="34dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"/>
+
+        <Switch
+            android:id="@+id/gstInclusiveSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#8080CBC4"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:scaleX="1.1"
+            android:scaleY="1.1"
+            android:theme="@style/SCBSwitch"
+            android:layout_marginEnd="41dp" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:clickable="true"
+    android:background="#FFFFFF"
+    android:id="@+id/menuRl"
+    android:paddingStart="20dp">
+
+    <TextView
+        android:id="@+id/menuTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#1E1E1E"
+        android:textSize="14sp"
+        android:text="Waitlist"/>
+
+    <ImageView
+        android:id="@+id/menuIv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="40dp"
+        android:src="@drawable/arrow_drop_down_black_24dp"/>
+
+</RelativeLayout>

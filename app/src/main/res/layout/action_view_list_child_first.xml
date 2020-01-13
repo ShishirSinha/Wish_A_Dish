@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:clickable="true"
+    android:background="@drawable/rounded_2_top_sides_grey"
+    android:id="@+id/menuCFRl"
+    android:paddingStart="30dp">
+
+    <TextView
+        android:id="@+id/menuCFTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#1E1E1E"
+        android:textSize="14sp"
+        android:text="Waitlist"/>
+
+</RelativeLayout>

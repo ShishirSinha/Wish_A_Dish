@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+<!--        Home-->
+        <item
+            android:id="@+id/nav_home"
+            android:enabled="false"
+            app:actionLayout="@layout/action_view_home" />
+
+<!--        Bills-->
+        <item
+            android:id="@+id/nav_bills"
+            android:enabled="false"
+            app:actionLayout="@layout/action_view_list_header" />
+
+<!--        Current Orders-->
+        <item
+            android:id="@+id/nav_slideshow"
+            android:enabled="false"
+            android:visible="false"
+            app:actionLayout="@layout/action_view_list_child_first" />
+
+<!--        Total Bills-->
+        <item
+            android:id="@+id/nav_tools"
+            android:enabled="false"
+            android:visible="false"
+            app:actionLayout="@layout/action_view_list_child_last"/>
+
+<!--        Inventory-->
+        <item
+            android:id="@+id/nav_inventory"
+            android:enabled="false"
+            app:actionLayout="@layout/action_view_list_header" />
+
+<!--        Add/Edit Inventory-->
+        <item
+            android:id="@+id/nav_add_edit_inventory"
+            android:enabled="false"
+            android:visible="false"
+            app:actionLayout="@layout/action_view_list_child_first" />
+
+<!--        Add/Edit Menu Item-->
+        <item
+            android:id="@+id/nav_add_edit_menu_item"
+            android:enabled="false"
+            android:visible="false"
+            app:actionLayout="@layout/action_view_list_child_last" />
+
+<!--        Human Resources-->
+        <item
+            android:id="@+id/nav_human_resources"
+            android:enabled="false"
+            app:actionLayout="@layout/action_view_list_header" />
+
+<!--        Add Employee-->
+        <item
+            android:id="@+id/nav_add_employee"
+            android:enabled="false"
+            android:visible="false"
+            app:actionLayout="@layout/action_view_list_child_first" />
+
+<!--        View Employee-->
+        <item
+            android:id="@+id/nav_send"
+            android:enabled="false"
+            android:visible="false"
+            app:actionLayout="@layout/action_view_list_child_middle" />
+
+<!--        Attendance-->
+        <item
+            android:id="@+id/nav_attendance"
+            android:enabled="false"
+            android:visible="false"
+            app:actionLayout="@layout/action_view_list_child_last" />
+
+<!--        Waitlist-->
+        <item
+            android:id="@+id/nav_gallery"
+            android:enabled="false"
+            app:actionLayout="@layout/action_view_list_header" />
+
+<!--        Settings-->
+        <item
+            android:id="@+id/nav_share"
+            android:enabled="false"
+            app:actionLayout="@layout/action_view_list_header" />
+
+<!--        Reports-->
+        <item
+            android:id="@+id/nav_reports"
+            android:enabled="false"
+            app:actionLayout="@layout/action_view_list_header"/>
+
+<!--        Logout-->
+        <item
+            android:id="@+id/nav_logout"
+            android:enabled="false"
+            app:actionLayout="@layout/action_view_list_header"/>
+
+    </group>
+
+</menu>

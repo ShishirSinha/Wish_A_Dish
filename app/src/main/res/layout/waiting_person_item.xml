@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:layout_marginEnd="12dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="23dp"
+                android:layout_marginBottom="27dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/custNameTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Udbhav Sinha"
+                    android:textAlignment="viewStart"
+                    android:textColor="#1e1e1e"
+                    android:textFontWeight="700"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/custNumberTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:text="9471067973"
+                    android:textAlignment="viewStart"
+                    android:textColor="#ee1e1e1e"
+                    android:textFontWeight="700"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="23dp"
+                android:layout_marginEnd="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="27dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/waitingTimeTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="20 minutes"
+                    android:textAlignment="viewEnd"
+                    android:textColor="#1e1e1e"
+                    android:textFontWeight="700"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tableForTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:text="Table For :  4"
+                    android:textAlignment="viewEnd"
+                    android:textColor="#ee1e1e1e"
+                    android:textFontWeight="700"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/ll2"
+                android:layout_width="40dp"
+                android:layout_height="70dp"
+                android:clickable="true"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/confirm_icon_border"
+                android:padding="3dp">
+
+                <ImageButton
+                    android:id="@+id/tickBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="#6B973D"
+                    android:src="@drawable/check_icon_30dp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>
