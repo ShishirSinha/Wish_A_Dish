@@ -32,26 +32,6 @@
             android:visible="false"
             app:actionLayout="@layout/action_view_list_child_last"/>
 
-<!--        Inventory-->
-        <item
-            android:id="@+id/nav_inventory"
-            android:enabled="false"
-            app:actionLayout="@layout/action_view_list_header" />
-
-<!--        Add/Edit Inventory-->
-        <item
-            android:id="@+id/nav_add_edit_inventory"
-            android:enabled="false"
-            android:visible="false"
-            app:actionLayout="@layout/action_view_list_child_first" />
-
-<!--        Add/Edit Menu Item-->
-        <item
-            android:id="@+id/nav_add_edit_menu_item"
-            android:enabled="false"
-            android:visible="false"
-            app:actionLayout="@layout/action_view_list_child_last" />
-
 <!--        Human Resources-->
         <item
             android:id="@+id/nav_human_resources"

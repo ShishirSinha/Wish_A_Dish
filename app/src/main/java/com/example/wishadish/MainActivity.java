@@ -51,9 +51,9 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
     private ActionBarDrawerToggle drawerToggle;
 
     private Menu menu;
-    private RelativeLayout homeRl,billRl,currentOrderRl,totalBillsRl,inventoryRl,addInvenRl,addMenuRl,humanResourcesRl,addEmpRl,viewEmpRl,attendanceRl,waitlistRl,settingsRl,reportsRl,logoutRl;
-    private TextView homeTv,billsTv,currentOrderTv,totalBillsTv,inventoryTv,addInvenTv,addMenuTv,humanResourcesTv,addEmpTv,viewEmpTv,attendanceTv,waitlistTv,settingsTv,reportsTv,logoutTv;
-    private ImageView billsIv,inventoryIv,humanResourcesIv,waitlistIv,settingsIv,reportsIv,logoutIv;
+    private RelativeLayout homeRl,billRl,currentOrderRl,totalBillsRl,humanResourcesRl,addEmpRl,viewEmpRl,attendanceRl,waitlistRl,settingsRl,reportsRl,logoutRl;
+    private TextView homeTv,billsTv,currentOrderTv,totalBillsTv,humanResourcesTv,addEmpTv,viewEmpTv,attendanceTv,waitlistTv,settingsTv,reportsTv,logoutTv;
+    private ImageView billsIv,humanResourcesIv,waitlistIv,settingsIv,reportsIv,logoutIv;
 
     private SettingsFragment shareFragment;
     private FragmentManager mFragmentManager;
@@ -106,19 +106,6 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
         totalBillsRl = (RelativeLayout) menu.findItem(R.id.nav_tools).getActionView().findViewById(R.id.menuCLRl);
         totalBillsTv = (TextView) menu.findItem(R.id.nav_tools).getActionView().findViewById(R.id.menuCLTv);
 
-        // Inventory
-        inventoryRl = (RelativeLayout) menu.findItem(R.id.nav_inventory).getActionView().findViewById(R.id.menuRl);
-        inventoryTv = (TextView) menu.findItem(R.id.nav_inventory).getActionView().findViewById(R.id.menuTv);
-        inventoryIv = (ImageView) menu.findItem(R.id.nav_inventory).getActionView().findViewById(R.id.menuIv);
-
-        // Add/Edit Inventory
-        addInvenRl = (RelativeLayout) menu.findItem(R.id.nav_add_edit_inventory).getActionView().findViewById(R.id.menuCFRl);
-        addInvenTv = (TextView) menu.findItem(R.id.nav_add_edit_inventory).getActionView().findViewById(R.id.menuCFTv);
-
-        // Add/Edit Menu Items
-        addMenuRl = (RelativeLayout) menu.findItem(R.id.nav_add_edit_menu_item).getActionView().findViewById(R.id.menuCLRl);
-        addMenuTv = (TextView) menu.findItem(R.id.nav_add_edit_menu_item).getActionView().findViewById(R.id.menuCLTv);
-
         // Human Resources
         humanResourcesRl = (RelativeLayout) menu.findItem(R.id.nav_human_resources).getActionView().findViewById(R.id.menuRl);
         humanResourcesTv = (TextView) menu.findItem(R.id.nav_human_resources).getActionView().findViewById(R.id.menuTv);
@@ -167,14 +154,12 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
                 fragmentManager.beginTransaction().replace(R.id.flcontent, fragment).commit();
                 setTitle("Home");
                 drawer.closeDrawers();
-                menu.findItem(R.id.nav_inventory).setVisible(true);
                 menu.findItem(R.id.nav_human_resources).setVisible(true);
                 menu.findItem(R.id.nav_gallery).setVisible(true);
                 menu.findItem(R.id.nav_share).setVisible(true);
                 menu.findItem(R.id.nav_gallery).setVisible(true);
                 menu.findItem(R.id.nav_reports).setVisible(true);
                 closeBills();
-                closeInventory();
                 closeHumanResources();
             }
         });
@@ -185,21 +170,19 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
             public void onClick(View v) {
                 Log.e("hello", "bills Clicked");
 
-                closeInventory();
                 closeHumanResources();
 
                 if(menu.findItem(R.id.nav_slideshow).isVisible()) {
                     closeBills();
-                    menu.findItem(R.id.nav_inventory).setVisible(true);
                     menu.findItem(R.id.nav_human_resources).setVisible(true);
+                    menu.findItem(R.id.nav_gallery).setVisible(true);
                 }
                 else{
                     billsIv.setImageResource(R.drawable.arrow_drop_up_black_24dp);
                     menu.findItem(R.id.nav_slideshow).setVisible(true);
                     menu.findItem(R.id.nav_tools).setVisible(true);
-                    menu.findItem(R.id.nav_inventory).setVisible(false);
                     menu.findItem(R.id.nav_human_resources).setVisible(false);
-                    menu.findItem(R.id.nav_gallery).setVisible(true);
+                    menu.findItem(R.id.nav_gallery).setVisible(false);
                     menu.findItem(R.id.nav_share).setVisible(true);
                     menu.findItem(R.id.nav_reports).setVisible(true);
                 }
@@ -218,8 +201,8 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
                 setTitle("Current Orders");
                 drawer.closeDrawers();
                 closeBills();
-                menu.findItem(R.id.nav_inventory).setVisible(true);
                 menu.findItem(R.id.nav_human_resources).setVisible(true);
+                menu.findItem(R.id.nav_gallery).setVisible(true);
             }
         });
 
@@ -235,69 +218,8 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
                 setTitle("Total Bills");
                 closeBills();
                 drawer.closeDrawers();
-                menu.findItem(R.id.nav_inventory).setVisible(true);
                 menu.findItem(R.id.nav_human_resources).setVisible(true);
-            }
-        });
-
-        inventoryTv.setText("Inventory");
-        inventoryRl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e("hello", "Inventory Clicked");
-
-                closeBills();
-                closeHumanResources();
-
-                if(menu.findItem(R.id.nav_add_edit_inventory).isVisible()) {
-                    closeInventory();
-                    menu.findItem(R.id.nav_gallery).setVisible(true);
-                    menu.findItem(R.id.nav_human_resources).setVisible(true);
-                }
-                else{
-                    inventoryIv.setImageResource(R.drawable.arrow_drop_up_black_24dp);
-                    menu.findItem(R.id.nav_add_edit_inventory).setVisible(true);
-                    menu.findItem(R.id.nav_add_edit_menu_item).setVisible(true);
-                    menu.findItem(R.id.nav_human_resources).setVisible(false);
-                    menu.findItem(R.id.nav_gallery).setVisible(false);
-                    menu.findItem(R.id.nav_share).setVisible(true);
-                    menu.findItem(R.id.nav_reports).setVisible(true);
-                }
-            }
-        });
-
-        addInvenTv.setText("Add/Edit Inventory");
-        addInvenRl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Yet not prepared!",Toast.LENGTH_SHORT).show();
-
-//                Fragment fragment = new ViewEmployeesFragment();
-//                FragmentManager fragmentManager = getSupportFragmentManager();
-//                fragmentManager.beginTransaction().replace(R.id.flcontent, fragment).commit();
-//                setTitle("Add/Edit Inventory");
-
-                drawer.closeDrawers();
-                closeInventory();
                 menu.findItem(R.id.nav_gallery).setVisible(true);
-                menu.findItem(R.id.nav_human_resources).setVisible(true);
-            }
-        });
-
-        addMenuTv.setText("Add/Edit Menu Item");
-        addMenuRl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Yet not prepared!",Toast.LENGTH_SHORT).show();
-
-//                Fragment fragment = new ViewEmployeesFragment();
-//                FragmentManager fragmentManager = getSupportFragmentManager();
-//                fragmentManager.beginTransaction().replace(R.id.flcontent, fragment).commit();
-//                setTitle("Add/Edit Me nu Item");
-                drawer.closeDrawers();
-                closeInventory();
-                menu.findItem(R.id.nav_gallery).setVisible(true);
-                menu.findItem(R.id.nav_human_resources).setVisible(true);
             }
         });
 
@@ -309,13 +231,12 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
                 Log.e("hello", "HR Clicked");
 
                 closeBills();
-                closeInventory();
 
                 if(menu.findItem(R.id.nav_send).isVisible()) {
                     closeHumanResources();
                     menu.findItem(R.id.nav_gallery).setVisible(true);
-                    menu.findItem(R.id.nav_slideshow).setVisible(true);
                     menu.findItem(R.id.nav_reports).setVisible(true);
+                    menu.findItem(R.id.nav_share).setVisible(true);
                 }
                 else{
                     humanResourcesIv.setImageResource(R.drawable.arrow_drop_up_black_24dp);
@@ -391,9 +312,7 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
                 setTitle("Waitlist");
                 drawer.closeDrawers();
                 closeBills();
-                closeInventory();
                 closeHumanResources();
-                menu.findItem(R.id.nav_inventory).setVisible(true);
                 menu.findItem(R.id.nav_human_resources).setVisible(true);
             }
         });
@@ -409,9 +328,7 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
                 setTitle("Settings");
                 drawer.closeDrawers();
                 closeBills();
-                closeInventory();
                 closeHumanResources();
-                menu.findItem(R.id.nav_inventory).setVisible(true);
                 menu.findItem(R.id.nav_human_resources).setVisible(true);
                 menu.findItem(R.id.nav_gallery).setVisible(true);
             }
@@ -428,9 +345,7 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
                 setTitle("Reports");
                 drawer.closeDrawers();
                 closeBills();
-                closeInventory();
                 closeHumanResources();
-                menu.findItem(R.id.nav_inventory).setVisible(true);
                 menu.findItem(R.id.nav_human_resources).setVisible(true);
                 menu.findItem(R.id.nav_gallery).setVisible(true);
                 menu.findItem(R.id.nav_share).setVisible(true);
@@ -446,10 +361,8 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
                 Toast.makeText(MainActivity.this,"Logged Out successfully!",Toast.LENGTH_SHORT).show();
 
                 closeBills();
-                closeInventory();
                 closeHumanResources();
 
-                menu.findItem(R.id.nav_inventory).setVisible(true);
                 menu.findItem(R.id.nav_human_resources).setVisible(true);
                 menu.findItem(R.id.nav_gallery).setVisible(true);
                 menu.findItem(R.id.nav_share).setVisible(true);
@@ -603,12 +516,6 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
         billsIv.setImageResource(R.drawable.arrow_drop_down_black_24dp);
         menu.findItem(R.id.nav_slideshow).setVisible(false);
         menu.findItem(R.id.nav_tools).setVisible(false);
-    }
-
-    private void closeInventory() {
-        inventoryIv.setImageResource(R.drawable.arrow_drop_down_black_24dp);
-        menu.findItem(R.id.nav_add_edit_inventory).setVisible(false);
-        menu.findItem(R.id.nav_add_edit_menu_item).setVisible(false);
     }
 
     private void closeHumanResources() {
