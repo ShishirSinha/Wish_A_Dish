@@ -1,7 +1,6 @@
-package com.example.wishadish.ui;
+package com.example.wishadish.ui.OrderOverview;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,11 +9,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.example.wishadish.MainActivity;
-import com.example.wishadish.MenuItemAdapter;
 import com.example.wishadish.MenuItemClass;
 import com.example.wishadish.R;
 

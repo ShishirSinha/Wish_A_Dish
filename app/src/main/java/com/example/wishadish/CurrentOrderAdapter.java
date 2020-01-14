@@ -13,7 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wishadish.ui.OrderOverviewActivity;
+import com.example.wishadish.ui.OrderOverview.OrderOverviewActivity;
 
 import java.util.List;
 

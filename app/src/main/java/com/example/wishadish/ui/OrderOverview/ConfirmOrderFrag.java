@@ -1,4 +1,4 @@
-package com.example.wishadish.ui;
+package com.example.wishadish.ui.OrderOverview;
 
 import android.content.Intent;
 import android.os.Bundle;

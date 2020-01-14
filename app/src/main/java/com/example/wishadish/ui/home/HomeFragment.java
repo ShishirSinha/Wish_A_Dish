@@ -27,7 +27,7 @@ import com.example.wishadish.MenuItemAdapter;
 import com.example.wishadish.R;
 import com.example.wishadish.TableAdapter;
 import com.example.wishadish.TableInfoClass;
-import com.example.wishadish.ui.OrderOverviewActivity;
+import com.example.wishadish.ui.OrderOverview.OrderOverviewActivity;
 
 import java.util.ArrayList;
 import java.util.List;

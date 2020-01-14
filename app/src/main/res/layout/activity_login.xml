@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.LoginPage.LoginActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="25dp"
+        android:textColor="#7A811A"
+        android:text="WishADish"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:text="Mobile App"
+            android:textColor="#929A23"
+            android:layout_marginEnd="15dp"
+            android:textSize="20sp" />
+
+        <RelativeLayout
+            android:id="@+id/rel_image"
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            android:layout_marginStart="5dp">
+
+<!--            <TextView-->
+<!--                android:id="@+id/random_circle"-->
+<!--                android:layout_toLeftOf="@id/food_image"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:background="@drawable/circle" />-->
+            <TextView
+                android:id="@+id/red_circle"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background= "@drawable/circle" />
+            <TextView
+                android:id="@+id/yellow_circle"
+                android:layout_marginStart="5dp"
+                android:layout_below="@id/red_circle"
+                android:layout_alignParentStart="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:backgroundTint="#F1CD1A"
+                android:background="@drawable/circle" />
+            <TextView
+                android:id="@+id/blue_circle"
+                android:layout_marginTop="55dp"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@id/yellow_circle"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:backgroundTint="#564DD9"
+                android:background="@drawable/circle"/>
+
+            <TextView
+                android:id="@+id/green_oval"
+                android:layout_marginTop="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_below="@id/yellow_circle"
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="-80dp"
+                android:background="@drawable/circle"
+                android:backgroundTint="#929A23"/>
+
+            <ImageView
+                android:id="@+id/food_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/pink_flowers" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.5"
+        android:orientation="vertical"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textSize="28sp"
+            android:textColor="#929A23"
+            android:textStyle="bold"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="12dp">
+
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/round_rect"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="27dp" />
+
+            <TextView
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/round_rect"
+                android:backgroundTint="@color/colorAccent"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp" />
+
+            <TextView
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/round_rect"
+                android:backgroundTint="#564DD9"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="33dp"
+            android:layout_marginTop="22dp"
+            android:textColor="#707070"
+            android:text="Mobile Number"
+            android:textSize="14sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/et_login_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingEnd="20dp"
+            android:gravity="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/round_et"
+            android:maxLength="10"
+            android:inputType="number" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="33dp"
+            android:layout_marginTop="22dp"
+            android:text="PIN"
+            android:textColor="#707070"
+            android:textSize="14sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/et_login_pin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingEnd="20dp"
+            android:gravity="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/round_et"
+            android:inputType="textPassword" />
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:paddingStart="60dp"
+            android:paddingEnd="60dp"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:text="Log In"
+            android:textSize="20dp"
+            android:background="@drawable/round_et"
+            android:textColor="#FFFFFF"/>
+
+    </LinearLayout>
+
+</LinearLayout>
