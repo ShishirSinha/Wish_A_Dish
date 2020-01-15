@@ -26,7 +26,7 @@ public class SettingsFragment extends Fragment {
 
     SharedPreferences pref;
     private final String TAG = "LoginSessionManager";
-    public static final String PREF_NAME   = "LoginPreference";
+    public static final String SETTINGS_PREF   = "LoginPreference";
     public static final String TABLE_MODE = "tableMode";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -45,7 +45,7 @@ public class SettingsFragment extends Fragment {
         gstInclusiveSwitch = root.findViewById(R.id.gstInclusiveSwitch);
         printerNameTV = root.findViewById(R.id.printerNameTV);
 
-        pref = getActivity().getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
+        pref = getActivity().getSharedPreferences(SETTINGS_PREF,Context.MODE_PRIVATE);
 
         tableModeSwitch.setChecked(pref.getBoolean(TABLE_MODE, false));
 

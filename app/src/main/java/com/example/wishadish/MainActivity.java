@@ -349,7 +349,6 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
                 menu.findItem(R.id.nav_human_resources).setVisible(true);
                 menu.findItem(R.id.nav_gallery).setVisible(true);
                 menu.findItem(R.id.nav_share).setVisible(true);
-
             }
         });
 
@@ -368,6 +367,8 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
                 menu.findItem(R.id.nav_share).setVisible(true);
                 menu.findItem(R.id.nav_reports).setVisible(true);
 
+                new LoginSessionManager(MainActivity.this).logout();
+                finish();
             }
         });
 

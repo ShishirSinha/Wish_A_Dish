@@ -22,18 +22,18 @@ public class LoginSessionManager {
     public static final String PREF_NAME   = "LoginPreference";
     private final String IS_LOGIN    = "IsLoggedIn";
 
-    public static final String DRIVER_ID         = "driverId";
-    public static final String DRIVER_DID       = "driverDid";
-    public static final String DRIVER_PASSWORD   = "driverPass";
-    public static final String DRIVER_PHONE      = "driver_phone";
-    public static final String DRIVER_ONLINE_STATUS      = "driver_online_status";
-    public static final String DRIVER_PROFILE_PIC       = "driver_profile_pic";
-    public static final String DRIVER_AADHAR_FRONT  = "driver_aadhar_front";
-    public static final String DRIVER_DL_FRONT  = "driver_dl_front";
-    public static final String DRIVER_DL_BACK  = "driver_dl_back";
-    public static final String DRIVER_VEHICLE_ID  = "driver_vehicleID";
-
-//    public static final String DRIVER_FCM_TOKEN      = "driver_FCM_Token";
+    public static final String EMP_ID           = "emp_id";
+    public static final String EMP_USERNAME     = "emp_username";
+    public static final String EMP_PASSWORD     = "emp_password";
+    public static final String EMP_NAME         = "emp_name";
+    public static final String EMP_MOBILE       = "emp_mobile";
+    public static final String EMP_COMPANY_NAME = "emp_company_name";
+    public static final String EMP_GST_NUMBER   = "emp_gst_number";
+    public static final String EMP_ADDRESS      = "emp_address";
+    public static final String EMP_TIME         = "emp_time";
+    public static final String EMP_EMAIL        = "emp_email";
+    public static final String EMP_TYPE         = "emp_type";
+    public static final String EMP_TOKEN        = "emp_token";
 
     public LoginSessionManager(Context context){
         mCtx = context;
@@ -41,20 +41,21 @@ public class LoginSessionManager {
         editor = pref.edit();
     }
 
-    public void createLoginSession(String did, String d_name, String password, String phone, String dp, String aadhar_front, String dl_front, String dl_back,  String vid) {
+    public void createLoginSession(String id, String username, String password, String name, String mobile, String company_name, String gst_no, String address, String time, String email, String type, String token) {
 
-        editor.putBoolean(IS_LOGIN,true);
-        editor.putBoolean(DRIVER_ONLINE_STATUS, true);
-
-        editor.putString(DRIVER_ID,d_name);
-        editor.putString(DRIVER_DID,did);
-        editor.putString(DRIVER_PASSWORD,password);
-        editor.putString(DRIVER_PHONE,phone);
-        editor.putString(DRIVER_PROFILE_PIC,dp);
-        editor.putString(DRIVER_AADHAR_FRONT, aadhar_front);
-        editor.putString(DRIVER_DL_FRONT, dl_front);
-        editor.putString(DRIVER_DL_BACK, dl_back);
-        editor.putString(DRIVER_VEHICLE_ID, vid);
+        editor.putBoolean(IS_LOGIN, true);
+        editor.putString(EMP_ID, id);
+        editor.putString(EMP_USERNAME, username);
+        editor.putString(EMP_PASSWORD, password);
+        editor.putString(EMP_NAME, name);
+        editor.putString(EMP_MOBILE, mobile);
+        editor.putString(EMP_COMPANY_NAME, company_name);
+        editor.putString(EMP_GST_NUMBER, gst_no);
+        editor.putString(EMP_ADDRESS, address);
+        editor.putString(EMP_TIME, time);
+        editor.putString(EMP_EMAIL, email);
+        editor.putString(EMP_TYPE, type);
+        editor.putString(EMP_TOKEN, token);
 
         editor.commit();
 
@@ -80,27 +81,22 @@ public class LoginSessionManager {
         return pref.getBoolean(IS_LOGIN, false);
     }
 
-    public boolean driverOnlineStatus(){
-        return pref.getBoolean(DRIVER_ONLINE_STATUS, false);
-    }
-
     public HashMap<String,String> getDriverDetailsFromPref(){
 
         HashMap<String, String> user = new HashMap<String, String>();
 
-        user.put(DRIVER_ID, pref.getString(DRIVER_ID, ""));
-        user.put(DRIVER_DID, pref.getString(DRIVER_DID, ""));
-        user.put(DRIVER_PASSWORD, pref.getString(DRIVER_PASSWORD, ""));
-        user.put(DRIVER_PHONE, pref.getString(DRIVER_PHONE, ""));
-        user.put(DRIVER_PROFILE_PIC, pref.getString(DRIVER_PROFILE_PIC,""));
-        user.put(DRIVER_AADHAR_FRONT, pref.getString(DRIVER_AADHAR_FRONT,""));
-        user.put(DRIVER_DL_FRONT, pref.getString(DRIVER_DL_FRONT,""));
-        user.put(DRIVER_DL_BACK, pref.getString(DRIVER_DL_BACK,""));
-
-//        user.put(TRANS_CITY, pref.getString(TRANS_CITY, ""));
-//        user.put(TRANS_STATE, pref.getString(TRANS_STATE, ""));
-//        user.put(TRANS_BANK_ACC, pref.getString(TRANS_BANK_ACC, ""));
-
+        user.put(EMP_ID, pref.getString(EMP_ID, ""));
+        user.put(EMP_USERNAME, pref.getString(EMP_USERNAME, ""));
+        user.put(EMP_PASSWORD, pref.getString(EMP_PASSWORD, ""));
+        user.put(EMP_NAME, pref.getString(EMP_NAME, ""));
+        user.put(EMP_MOBILE, pref.getString(EMP_MOBILE,""));
+        user.put(EMP_COMPANY_NAME, pref.getString(EMP_COMPANY_NAME,""));
+        user.put(EMP_GST_NUMBER, pref.getString(EMP_GST_NUMBER,""));
+        user.put(EMP_ADDRESS, pref.getString(EMP_ADDRESS,""));
+        user.put(EMP_TIME, pref.getString(EMP_ADDRESS,""));
+        user.put(EMP_EMAIL, pref.getString(EMP_EMAIL,""));
+        user.put(EMP_TYPE, pref.getString(EMP_TYPE,""));
+        user.put(EMP_TOKEN, pref.getString(EMP_TOKEN,""));
 
         return user;
     }

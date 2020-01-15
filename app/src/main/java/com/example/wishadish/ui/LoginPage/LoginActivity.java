@@ -16,6 +16,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.wishadish.LoginSessionManager;
 import com.example.wishadish.MainActivity;
 import com.example.wishadish.MySingleton;
 import com.example.wishadish.R;
@@ -103,6 +104,24 @@ public class LoginActivity extends AppCompatActivity {
                         return;
                     }
 
+                    JSONObject jsonResult = jsonResponse.getJSONObject("details");
+                    String mToken = jsonResponse.getString("token");
+
+                    String mId   = jsonResult.getString("id");
+                    String mUsername = jsonResult.getString("username");
+                    String mPassword   = jsonResult.getString("password");
+                    String mName= jsonResult.getString("name");
+                    String mMobile= jsonResult.getString("mobile");
+                    String mCompanyName    = jsonResult.getString("company_name");
+                    String mGSTno  = jsonResult.getString("gst_no");
+                    String mAddress  = jsonResult.getString("address");
+                    String mTime  = jsonResult.getString("time");
+                    String mEmail  = jsonResult.getString("email");
+                    String mType  = jsonResult.getString("type");
+
+                    LoginSessionManager mSession = new LoginSessionManager(LoginActivity.this);
+                    mSession.createLoginSession(mId, mUsername, mPassword, mName, mMobile, mCompanyName, mGSTno, mAddress, mTime, mEmail, mType, mToken);
+
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
 
@@ -126,8 +145,11 @@ public class LoginActivity extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<>();
 
-                params.put("username", mob);
+                params.put("mobile", mob);
                 params.put("password", password);
+
+                Log.e("mobile", mob);
+                Log.e("password",password);
 
                 return params;
             }

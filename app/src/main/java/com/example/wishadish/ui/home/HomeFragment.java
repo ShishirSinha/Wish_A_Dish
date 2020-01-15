@@ -32,7 +32,7 @@ import com.example.wishadish.ui.OrderOverview.OrderOverviewActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.wishadish.ui.Settings.SettingsFragment.PREF_NAME;
+import static com.example.wishadish.ui.Settings.SettingsFragment.SETTINGS_PREF;
 import static com.example.wishadish.ui.Settings.SettingsFragment.TABLE_MODE;
 
 public class HomeFragment extends Fragment {
@@ -74,7 +74,7 @@ public class HomeFragment extends Fragment {
 //            }
 //        });
 
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SETTINGS_PREF, Context.MODE_PRIVATE);
         boolean b = sharedPreferences.getBoolean(TABLE_MODE, false);
 
         Log.e(TAG, "table mode = " + b);
