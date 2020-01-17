@@ -40,4 +40,19 @@
         <item>BHIM</item>
     </string-array>
 
+    <string name="emp_type">Type</string>
+
+    <string-array name="Employee_type">
+        <item>MANAGER</item>
+        <item>WAITER</item>
+        <item>CHEF</item>
+    </string-array>
+
+    <string name="salary_period">Type</string>
+
+    <string-array name="Period">
+        <item>Monthly</item>
+        <item>Annual</item>
+    </string-array>
+
 </resources>

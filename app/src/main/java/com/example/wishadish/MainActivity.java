@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.example.wishadish.ui.Bills.CurrentOrdersFragment;
 import com.example.wishadish.ui.Bills.TotalBillsFragment;
+import com.example.wishadish.ui.HumanResources.AddEmployeeFragment;
 import com.example.wishadish.ui.HumanResources.ViewEmployeesFragment;
 import com.example.wishadish.ui.Reports.ReportsFragment;
 import com.example.wishadish.ui.Settings.SelectPrinterFrag;
@@ -254,11 +255,10 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
         addEmpRl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Yet not prepared!",Toast.LENGTH_SHORT).show();
-//                Fragment fragment = new ViewEmployeesFragment();
-//                FragmentManager fragmentManager = getSupportFragmentManager();
-//                fragmentManager.beginTransaction().replace(R.id.flcontent, fragment).commit();
-//                setTitle("Add Employee");
+                Fragment fragment = new AddEmployeeFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.flcontent, fragment).commit();
+                setTitle("Add Employee");
                 drawer.closeDrawers();
                 closeHumanResources();
                 menu.findItem(R.id.nav_gallery).setVisible(true);
@@ -428,6 +428,9 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
                 break;
             case R.id.nav_tools:
                 fragmentClass = TotalBillsFragment.class;
+                break;
+            case R.id.nav_add_employee:
+                fragmentClass = AddEmployeeFragment.class;
                 break;
             default:fragmentClass = HomeFragment.class;
         }

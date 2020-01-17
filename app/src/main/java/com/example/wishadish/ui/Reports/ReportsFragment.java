@@ -23,10 +23,9 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.wishadish.MySingleton;
+import com.example.wishadish.Utility.MySingleton;
 import com.example.wishadish.R;
 import com.example.wishadish.WaitListClass;
-import com.example.wishadish.ui.Waitlist.GalleryViewModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,7 +40,7 @@ import static com.example.wishadish.LoginSessionManager.PREF_NAME;
 
 public class ReportsFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
+    private ReportsViewModel reportsViewModel;
     private final String TAG = this.getClass().getSimpleName();
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -66,8 +65,8 @@ public class ReportsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                ViewModelProviders.of(this).get(GalleryViewModel.class);
+        reportsViewModel =
+                ViewModelProviders.of(this).get(ReportsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_reports, container, false);
 
         setHasOptionsMenu(true);

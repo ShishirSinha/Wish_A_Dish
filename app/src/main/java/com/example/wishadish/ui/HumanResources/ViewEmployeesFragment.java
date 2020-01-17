@@ -25,10 +25,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.wishadish.EmployeeAdapter;
 import com.example.wishadish.EmployeeClass;
-import com.example.wishadish.MySingleton;
+import com.example.wishadish.Utility.MySingleton;
 import com.example.wishadish.R;
-import com.example.wishadish.WaitListAdapter;
-import com.example.wishadish.WaitListClass;
 
 import org.json.JSONArray;
 import org.json.JSONException;

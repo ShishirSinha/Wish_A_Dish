@@ -1,4 +1,4 @@
-package com.example.wishadish;
+package com.example.wishadish.Utility;
 
 import android.content.Context;
 

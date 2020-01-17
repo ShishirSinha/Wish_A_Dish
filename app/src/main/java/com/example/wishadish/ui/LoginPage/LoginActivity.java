@@ -18,9 +18,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.wishadish.LoginSessionManager;
 import com.example.wishadish.MainActivity;
-import com.example.wishadish.MySingleton;
+import com.example.wishadish.Utility.MySingleton;
 import com.example.wishadish.R;
-import com.example.wishadish.StartActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
