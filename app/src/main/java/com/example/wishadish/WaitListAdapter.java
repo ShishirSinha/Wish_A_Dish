@@ -10,7 +10,14 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.wishadish.ui.Bills.UpdatePaymentFrag;
 
 import java.util.List;
 
@@ -19,20 +26,30 @@ public class WaitListAdapter extends RecyclerView.Adapter<WaitListAdapter.ViewHo
     private List<WaitListClass> mWaitingPersons;
     private Context context;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView cusNameTv;
         public TextView cusNumTv;
         public TextView tableForTv;
         public TextView waitTimeTv;
         public ImageButton tickBtn;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull final View itemView) {
             super(itemView);
             cusNameTv = itemView.findViewById(R.id.custNameTV);
             cusNumTv = itemView.findViewById(R.id.custNumberTV);
             tableForTv = itemView.findViewById(R.id.tableForTV);
             waitTimeTv = itemView.findViewById(R.id.waitingTimeTV);
             tickBtn = itemView.findViewById(R.id.tickBtn);
+
+            tickBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppCompatActivity activity = (AppCompatActivity) itemView.getContext();
+
+                    removeAt(getAdapterPosition());
+                }
+            });
+
         }
     }
 
@@ -61,5 +78,11 @@ public class WaitListAdapter extends RecyclerView.Adapter<WaitListAdapter.ViewHo
     @Override
     public int getItemCount() {
         return mWaitingPersons.size();
+    }
+
+    public void removeAt(int position) {
+        mWaitingPersons.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, mWaitingPersons.size());
     }
 }

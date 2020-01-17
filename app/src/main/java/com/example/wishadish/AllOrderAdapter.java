@@ -28,7 +28,7 @@ public class AllOrderAdapter extends RecyclerView.Adapter<AllOrderAdapter.ViewHo
     private Context context;
     private Activity act;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView allOrderTableNumTv;
         public TextView allOrderTimeTv;
         public TextView allOrderNumTv;

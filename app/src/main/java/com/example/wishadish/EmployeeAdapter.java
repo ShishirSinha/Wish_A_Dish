@@ -26,7 +26,7 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
     private Context context;
     private Activity act;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView empNameTv;
         public TextView empTypeTv;
         public TextView empEmailTv;
@@ -77,8 +77,6 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
                 .transform(new RoundedCornersTransformation(10, 0))
                 .centerCrop()
                 .into(holder.empImage);
-
-
     }
 
     @Override

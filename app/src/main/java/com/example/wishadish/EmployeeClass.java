@@ -15,14 +15,16 @@ public class EmployeeClass {
 //    private String mEmployeeHolidaysAllowed;
 //    private String mEmployeeAddress;
 
+    private String mEmployeeId;
     private String mEmployeeName;
     private String mEmployeeType;
     private String mEmployeeEmailId;
     private String mEmployeeMob;
-    private String mEmployeeSalary;
+    private int mEmployeeSalary;
     private String mEmployeeAddress;
 
-    public EmployeeClass(String mEmployeeName, String mEmployeeType, String mEmployeeEmailId, String mEmployeeMob, String mEmployeeSalary, String mEmployeeAddress) {
+    public EmployeeClass(String mEmployeeId, String mEmployeeName, String mEmployeeType, String mEmployeeEmailId, String mEmployeeMob, int mEmployeeSalary, String mEmployeeAddress) {
+        this.mEmployeeId = mEmployeeId;
         this.mEmployeeName = mEmployeeName;
         this.mEmployeeType = mEmployeeType;
         this.mEmployeeEmailId = mEmployeeEmailId;
@@ -63,11 +65,11 @@ public class EmployeeClass {
         this.mEmployeeMob = mEmployeeMob;
     }
 
-    public String getmEmployeeSalary() {
+    public int getmEmployeeSalary() {
         return mEmployeeSalary;
     }
 
-    public void setmEmployeeSalary(String mEmployeeSalary) {
+    public void setmEmployeeSalary(int mEmployeeSalary) {
         this.mEmployeeSalary = mEmployeeSalary;
     }
 
@@ -77,5 +79,13 @@ public class EmployeeClass {
 
     public void setmEmployeeAddress(String mEmployeeAddress) {
         this.mEmployeeAddress = mEmployeeAddress;
+    }
+
+    public String getmEmployeeId() {
+        return mEmployeeId;
+    }
+
+    public void setmEmployeeId(String mEmployeeId) {
+        this.mEmployeeId = mEmployeeId;
     }
 }

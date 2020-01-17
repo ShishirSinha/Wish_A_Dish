@@ -18,7 +18,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
     private List<TableInfoClass> mTableList;
     private Context context;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tableNumberTv;
         public TextView tableSizeTv;
         public Switch tableOnlineSwitch;

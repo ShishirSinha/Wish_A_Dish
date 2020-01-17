@@ -23,7 +23,7 @@ public class CurrentOrderAdapter extends RecyclerView.Adapter<CurrentOrderAdapte
     private Context context;
     private Activity act;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView currentOrderNumTv;
         public TextView currentOrderAmountTv;
         public TextView currentOrderDateTv;

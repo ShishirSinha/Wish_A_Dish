@@ -18,7 +18,7 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.ViewHo
     private List<MenuItemClass> mMenuItems;
     private Context context;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView itemname;
         public TextView quantity;
         public ImageButton addBtn;

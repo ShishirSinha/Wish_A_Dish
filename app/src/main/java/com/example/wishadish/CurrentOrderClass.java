@@ -3,11 +3,11 @@ package com.example.wishadish;
 public class CurrentOrderClass {
 
     private String mOrdernumber;
-    private int mOrderAmount;
+    private double mOrderAmount;
     private String mDate;
     private boolean mOrderCancelled;
 
-    public CurrentOrderClass(String mOrdernumber, int mOrderAmount, String mDate, boolean mOrderCancelled) {
+    public CurrentOrderClass(String mOrdernumber, double mOrderAmount, String mDate, boolean mOrderCancelled) {
         this.mOrdernumber = mOrdernumber;
         this.mOrderAmount = mOrderAmount;
         this.mDate = mDate;
@@ -22,11 +22,11 @@ public class CurrentOrderClass {
         this.mOrdernumber = mOrdernumber;
     }
 
-    public int getmOrderAmount() {
+    public double getmOrderAmount() {
         return mOrderAmount;
     }
 
-    public void setmOrderAmount(int mOrderAmount) {
+    public void setmOrderAmount(double mOrderAmount) {
         this.mOrderAmount = mOrderAmount;
     }
 

@@ -1,5 +1,6 @@
 package com.example.wishadish.ui.Reports;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -45,6 +47,18 @@ public class ReportsFragment extends Fragment {
     private RecyclerView.Adapter adapter;
     private List<WaitListClass> waitList;
 
+    private TextView maxBillId0,maxBillId1,maxBillId2,maxBillId3,maxBillId4;
+    private TextView maxBillAmt0,maxBillAmt1,maxBillAmt2,maxBillAmt3,maxBillAmt4;
+
+    private TextView maxItemName0,maxItemName1,maxItemName2,maxItemName3,maxItemName4;
+    private TextView maxItemAmt0,maxItemAmt1,maxItemAmt2,maxItemAmt3,maxItemAmt4;
+
+    private TextView disId0,disId1,disId2,disId3,disId4;
+    private TextView disAmt0,disAmt1,disAmt2,disAmt3,disAmt4;
+
+    private TextView payMet0,payMet1,payMet2,payMet3,payMet4;
+    private TextView payMethodAmt0,payMethodAmt1,payMethodAmt2,payMethodAmt3,payMethodAmt4;
+
     public static final String BASE_URL = "http://194.59.165.34:5008";
     public static final int RETRY_SECONDS = 5 * 1000;
     public static final int NO_OF_RETRY = 0;
@@ -58,6 +72,54 @@ public class ReportsFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
+        maxBillId0 = root.findViewById(R.id.maxBillId0);
+        maxBillId1 = root.findViewById(R.id.maxBillId1);
+        maxBillId2 = root.findViewById(R.id.maxBillId2);
+        maxBillId3 = root.findViewById(R.id.maxBillId3);
+        maxBillId4 = root.findViewById(R.id.maxBillId4);
+
+        maxBillAmt0 = root.findViewById(R.id.maxBillAmt0);
+        maxBillAmt1 = root.findViewById(R.id.maxBillAmt1);
+        maxBillAmt2 = root.findViewById(R.id.maxBillAmt2);
+        maxBillAmt3 = root.findViewById(R.id.maxBillAmt3);
+        maxBillAmt4 = root.findViewById(R.id.maxBillAmt4);
+
+        maxItemName0 = root.findViewById(R.id.maxItemName0);
+        maxItemName1 = root.findViewById(R.id.maxItemName1);
+        maxItemName2 = root.findViewById(R.id.maxItemName2);
+        maxItemName3 = root.findViewById(R.id.maxItemName3);
+        maxItemName4 = root.findViewById(R.id.maxItemName4);
+
+        maxItemAmt0 = root.findViewById(R.id.maxItemAmt0);
+        maxItemAmt1 = root.findViewById(R.id.maxItemAmt1);
+        maxItemAmt2 = root.findViewById(R.id.maxItemAmt2);
+        maxItemAmt3 = root.findViewById(R.id.maxItemAmt3);
+        maxItemAmt4 = root.findViewById(R.id.maxItemAmt4);
+
+        disId0 = root.findViewById(R.id.disId0);
+        disId1 = root.findViewById(R.id.disId1);
+        disId2 = root.findViewById(R.id.disId2);
+        disId3 = root.findViewById(R.id.disId3);
+        disId4 = root.findViewById(R.id.disId4);
+
+        disAmt0 = root.findViewById(R.id.disAmt0);
+        disAmt1 = root.findViewById(R.id.disAmt1);
+        disAmt2 = root.findViewById(R.id.disAmt2);
+        disAmt3 = root.findViewById(R.id.disAmt3);
+        disAmt4 = root.findViewById(R.id.disAmt4);
+
+        payMet0 = root.findViewById(R.id.payMet0);
+        payMet1 = root.findViewById(R.id.payMet1);
+        payMet2 = root.findViewById(R.id.payMet2);
+        payMet3 = root.findViewById(R.id.payMet3);
+        payMet4 = root.findViewById(R.id.payMet4);
+
+        payMethodAmt0 = root.findViewById(R.id.payMethodAmt0);
+        payMethodAmt1 = root.findViewById(R.id.payMethodAmt1);
+        payMethodAmt2 = root.findViewById(R.id.payMethodAmt2);
+        payMethodAmt3 = root.findViewById(R.id.payMethodAmt3);
+        payMethodAmt4 = root.findViewById(R.id.payMethodAmt4);
+
         getReport();
 
         return root;
@@ -67,7 +129,9 @@ public class ReportsFragment extends Fragment {
 
         Log.e(TAG, "called : getReport");
 
-        //mProgressBar.setVisibility(View.VISIBLE);
+        final ProgressDialog progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
 
         String REPORTS_URL = BASE_URL + "/reports";
 
@@ -77,7 +141,7 @@ public class ReportsFragment extends Fragment {
 
                 Log.e(TAG, response);
 
-                //mProgressBar.setVisibility(View.GONE);
+                progressDialog.dismiss();
 
                 try {
 
@@ -141,6 +205,53 @@ public class ReportsFragment extends Fragment {
                     String method4 = jsonPayMethod.getJSONObject(4).getString("method");
                     String pamt4 = jsonPayMethod.getJSONObject(4).getString("amount");
 
+                    maxBillId0.setText("#"+aid0);
+                    maxBillId1.setText("#"+aid1);
+                    maxBillId2.setText("#"+aid2);
+                    maxBillId3.setText("#"+aid3);
+                    maxBillId4.setText("#"+aid4);
+
+                    maxBillAmt0.setText("₹"+amt0);
+                    maxBillAmt1.setText("₹"+amt1);
+                    maxBillAmt2.setText("₹"+amt2);
+                    maxBillAmt3.setText("₹"+amt3);
+                    maxBillAmt4.setText("₹"+amt4);
+
+                    maxItemName0.setText(name0);
+                    maxItemName1.setText(name1);
+                    maxItemName2.setText(name2);
+                    maxItemName3.setText(name3);
+                    maxItemName4.setText(name4);
+
+                    maxItemAmt0.setText(qty0);
+                    maxItemAmt1.setText(qty1);
+                    maxItemAmt2.setText(qty2);
+                    maxItemAmt3.setText(qty3);
+                    maxItemAmt4.setText(qty4);
+
+                    disId0.setText("#"+did0);
+                    disId1.setText("#"+did1);
+                    disId2.setText("#"+did2);
+                    disId3.setText("#"+did3);
+                    disId4.setText("#"+did4);
+
+                    disAmt0.setText("₹"+dis0);
+                    disAmt1.setText("₹"+dis1);
+                    disAmt2.setText("₹"+dis2);
+                    disAmt3.setText("₹"+dis3);
+                    disAmt4.setText("₹"+dis4);
+
+                    payMet0.setText(method0);
+                    payMet1.setText(method1);
+                    payMet2.setText(method2);
+                    payMet3.setText(method3);
+                    payMet4.setText(method4);
+
+                    payMethodAmt0.setText("₹"+pamt0);
+                    payMethodAmt1.setText("₹"+pamt1);
+                    payMethodAmt2.setText("₹"+pamt2);
+                    payMethodAmt3.setText("₹"+pamt3);
+                    payMethodAmt4.setText("₹"+pamt4);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -164,7 +275,7 @@ public class ReportsFragment extends Fragment {
                 params.put("Content-Type", "application/json; charset=UTF-8");
                 params.put("x-access-token", ACCESS_TOKEN);
 
-                Log.e("x-access-token", "Its is = "+ACCESS_TOKEN);
+                Log.e("x-access-token", "It is = "+ACCESS_TOKEN);
                 return params;
             }
         };

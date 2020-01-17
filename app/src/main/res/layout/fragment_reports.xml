@@ -323,10 +323,10 @@
                         android:id="@+id/maxBillId0"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="#2234"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                     <TextView
@@ -337,7 +337,7 @@
                         android:layout_marginStart="15dp"
                         android:text="₹ 320"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -353,10 +353,10 @@
                         android:id="@+id/maxBillId1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="#2234"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                     <TextView
@@ -367,7 +367,7 @@
                         android:layout_marginStart="15dp"
                         android:text="₹ 320"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -383,10 +383,10 @@
                         android:id="@+id/maxBillId2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="#2234"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                     <TextView
@@ -397,7 +397,7 @@
                         android:layout_marginStart="15dp"
                         android:text="₹ 320"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -413,10 +413,10 @@
                         android:id="@+id/maxBillId3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="#2234"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                     <TextView
@@ -427,7 +427,7 @@
                         android:layout_marginStart="15dp"
                         android:text="₹ 320"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -443,7 +443,7 @@
                         android:id="@+id/maxBillId4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="#2234"
                         android:textColor="#1E1E1E"
                         android:textSize="16sp"
@@ -493,10 +493,10 @@
                         android:id="@+id/maxItemName0"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="Naan"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                     <TextView
@@ -507,7 +507,7 @@
                         android:layout_marginStart="15dp"
                         android:text="₹ 320"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -523,10 +523,10 @@
                         android:id="@+id/maxItemName1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="Paratha"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                     <TextView
@@ -537,7 +537,7 @@
                         android:layout_marginStart="15dp"
                         android:text="₹ 320"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -553,10 +553,10 @@
                         android:id="@+id/maxItemName2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="Paneer Masala"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                     <TextView
@@ -567,7 +567,7 @@
                         android:layout_marginStart="15dp"
                         android:text="₹ 320"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -583,10 +583,10 @@
                         android:id="@+id/maxItemName3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="Chicken Kadhai"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                     <TextView
@@ -597,7 +597,7 @@
                         android:layout_marginStart="15dp"
                         android:text="₹ 320"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -613,10 +613,10 @@
                         android:id="@+id/maxItemName4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="Roti"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                     <TextView
@@ -628,7 +628,7 @@
                         android:layout_marginBottom="24dp"
                         android:text="₹ 320"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -660,22 +660,24 @@
                     android:layout_marginStart="34dp">
 
                     <TextView
+                        android:id="@+id/disId0"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="#2234"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                     <TextView
+                        android:id="@+id/disAmt0"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="15dp"
                         android:text="₹ 320"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -688,22 +690,24 @@
                     android:layout_marginStart="34dp">
 
                     <TextView
+                        android:id="@+id/disId1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="#2234"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                     <TextView
+                        android:id="@+id/disAmt1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="15dp"
                         android:text="₹ 320"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -716,22 +720,24 @@
                     android:layout_marginStart="34dp">
 
                     <TextView
+                        android:id="@+id/disId2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="#2234"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                     <TextView
+                        android:id="@+id/disAmt2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="15dp"
                         android:text="₹ 320"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -744,22 +750,24 @@
                     android:layout_marginStart="34dp">
 
                     <TextView
+                        android:id="@+id/disId3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="#2234"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                     <TextView
+                        android:id="@+id/disAmt3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="15dp"
                         android:text="₹ 320"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -772,15 +780,17 @@
                     android:layout_marginStart="34dp">
 
                     <TextView
+                        android:id="@+id/disId4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="#2234"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                     <TextView
+                        android:id="@+id/disAmt4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -788,7 +798,7 @@
                         android:layout_marginBottom="24dp"
                         android:text="₹ 320"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -821,22 +831,24 @@
                     android:layout_marginStart="34dp">
 
                     <TextView
+                        android:id="@+id/payMet0"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="Cash"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                     <TextView
+                        android:id="@+id/payMethodAmt0"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="15dp"
                         android:text="₹ 3200"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -849,22 +861,24 @@
                     android:layout_marginStart="34dp">
 
                     <TextView
+                        android:id="@+id/payMet1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="Card"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                     <TextView
+                        android:id="@+id/payMethodAmt1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="15dp"
                         android:text="₹ 1000"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -877,22 +891,24 @@
                     android:layout_marginStart="34dp">
 
                     <TextView
+                        android:id="@+id/payMet2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="PayTM"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                     <TextView
+                        android:id="@+id/payMethodAmt2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="15dp"
                         android:text="₹ 500"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -905,22 +921,24 @@
                     android:layout_marginStart="34dp">
 
                     <TextView
+                        android:id="@+id/payMet3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="Google Pay"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                     <TextView
+                        android:id="@+id/payMethodAmt3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="15dp"
                         android:text="₹ 320"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -933,15 +951,17 @@
                     android:layout_marginStart="34dp">
 
                     <TextView
+                        android:id="@+id/payMet4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="BHIM"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                     <TextView
+                        android:id="@+id/payMethodAmt4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -949,7 +969,7 @@
                         android:layout_marginBottom="24dp"
                         android:text="₹ 0"
                         android:textColor="#1E1E1E"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>

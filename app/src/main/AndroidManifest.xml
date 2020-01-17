@@ -27,6 +27,9 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan">
         </activity>
+
+        <receiver android:name=".AlarmReceiver" />
+
     </application>
 
 </manifest>
