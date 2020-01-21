@@ -78,6 +78,12 @@
 
         </LinearLayout>
 
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv1"
             android:layout_width="match_parent"
@@ -147,23 +153,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <Button
-            android:id="@+id/addTableButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginStart="27dp"
-            android:layout_marginEnd="27dp"
-            android:background="@drawable/rounded_button"
-            android:paddingTop="14dp"
-            android:paddingBottom="14dp"
-            android:text="Add New Table"
-            android:textColor="#ffffff"
-            android:textFontWeight="700"
-            android:textSize="16sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv4"

@@ -20,8 +20,10 @@
             android:layout_height="45dp">
 
             <TextView
+                android:id="@+id/tableModeTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="true"
                 android:text="TABLE MODE"
                 android:textSize="14sp"
                 android:textColor="#ee1e1e1e"
@@ -62,8 +64,10 @@
             android:layout_height="45dp">
 
             <TextView
+                android:id="@+id/serviceChargeTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="17dp"
@@ -104,8 +108,10 @@
             android:layout_height="45dp">
 
             <TextView
+                android:id="@+id/happyHoursTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="true"
                 android:text="HAPPY HOURS"
                 android:textSize="14sp"
                 android:textColor="#ee1e1e1e"

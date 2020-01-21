@@ -5,9 +5,9 @@ public class MenuItemClass {
     private String mItemName;
     private int mQuantity;
     private String type;
-    private int mCost;
+    private double mCost;
 
-    public MenuItemClass(String mItemName, int mQuantity, String type, int mCost) {
+    public MenuItemClass(String mItemName, int mQuantity, String type, double mCost) {
         this.mItemName = mItemName;
         this.mQuantity = mQuantity;
         this.type = type;
@@ -38,11 +38,11 @@ public class MenuItemClass {
         this.type = type;
     }
 
-    public int getmCost() {
+    public double getmCost() {
         return mCost;
     }
 
-    public void setmCost(int mCost) {
+    public void setmCost(double mCost) {
         this.mCost = mCost;
     }
 }

@@ -25,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.wishadish.CurrentOrderAdapter;
 import com.example.wishadish.CurrentOrderClass;
+import com.example.wishadish.MainActivity;
 import com.example.wishadish.Utility.MySingleton;
 import com.example.wishadish.R;
 
@@ -45,7 +46,6 @@ import static com.example.wishadish.ui.Reports.ReportsFragment.RETRY_SECONDS;
 
 public class CurrentOrdersFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
     private final String TAG = this.getClass().getSimpleName();
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -53,9 +53,9 @@ public class CurrentOrdersFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                ViewModelProviders.of(this).get(SlideshowViewModel.class);
         View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
+
+        ((MainActivity) getActivity()).setActionBarTitle("Current Orders");
 
         setHasOptionsMenu(true);
 
@@ -72,14 +72,6 @@ public class CurrentOrdersFragment extends Fragment {
         recyclerView =(RecyclerView) root.findViewById(R.id.rv5);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        CurrentOrderClass co1 = new CurrentOrderClass("1",720,"08-01-2020",false);
-        CurrentOrderClass co2 = new CurrentOrderClass("2",635,"08-01-2020",true);
-        currentOrderClassList.add(co1);
-        currentOrderClassList.add(co2);
-
-        adapter = new CurrentOrderAdapter(currentOrderClassList,getActivity().getApplicationContext(), getActivity());
-        recyclerView.setAdapter(adapter);
-
         loadCurrentOrders();
 
         return root;
@@ -95,7 +87,7 @@ public class CurrentOrdersFragment extends Fragment {
 
         final String CURRENT_ORDERS_URL = BASE_URL + "/bills/current";
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, CURRENT_ORDERS_URL, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, CURRENT_ORDERS_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -148,8 +140,8 @@ public class CurrentOrdersFragment extends Fragment {
             }
         }) {
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<>();
 
                 SharedPreferences sharedPreferences = getContext().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
                 String ACCESS_TOKEN = sharedPreferences.getString(EMP_TOKEN,"");
@@ -157,6 +149,7 @@ public class CurrentOrdersFragment extends Fragment {
                 params.put("x-access-token", ACCESS_TOKEN);
 
                 Log.e("x-access-token", "It is = "+ACCESS_TOKEN);
+
                 return params;
             }
 

@@ -23,6 +23,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.wishadish.MainActivity;
 import com.example.wishadish.Utility.MySingleton;
 import com.example.wishadish.R;
 import com.example.wishadish.WaitListClass;
@@ -40,11 +41,9 @@ import static com.example.wishadish.LoginSessionManager.PREF_NAME;
 
 public class ReportsFragment extends Fragment {
 
-    private ReportsViewModel reportsViewModel;
     private final String TAG = this.getClass().getSimpleName();
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-    private List<WaitListClass> waitList;
+
+    private TextView currentOrdersTv,todaysOrdersTv,totalOrdersTv,todaysSaleTv,totalSalesTv;
 
     private TextView maxBillId0,maxBillId1,maxBillId2,maxBillId3,maxBillId4;
     private TextView maxBillAmt0,maxBillAmt1,maxBillAmt2,maxBillAmt3,maxBillAmt4;
@@ -65,11 +64,17 @@ public class ReportsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        reportsViewModel =
-                ViewModelProviders.of(this).get(ReportsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_reports, container, false);
 
+        ((MainActivity) getActivity()).setActionBarTitle("Reports");
+
         setHasOptionsMenu(true);
+
+        currentOrdersTv = root.findViewById(R.id.currentOrdersTv2);
+        todaysOrdersTv = root.findViewById(R.id.todaysOrdersTv2);
+        totalOrdersTv = root.findViewById(R.id.totalOrdersTv2);
+        todaysSaleTv = root.findViewById(R.id.todaysSaleTv2);
+        totalSalesTv = root.findViewById(R.id.totalSalesTv2);
 
         maxBillId0 = root.findViewById(R.id.maxBillId0);
         maxBillId1 = root.findViewById(R.id.maxBillId1);
@@ -134,7 +139,7 @@ public class ReportsFragment extends Fragment {
 
         String REPORTS_URL = BASE_URL + "/reports";
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, REPORTS_URL, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, REPORTS_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -204,6 +209,42 @@ public class ReportsFragment extends Fragment {
                     String method4 = jsonPayMethod.getJSONObject(4).getString("method");
                     String pamt4 = jsonPayMethod.getJSONObject(4).getString("amount");
 
+                    JSONArray jsonTotal = jsonResponse.getJSONArray("total");
+
+                    int totalOrders = Integer.parseInt(jsonTotal.getJSONObject(0).getString("orders"));
+                    String  totalSalesString = jsonTotal.getJSONObject(0).getString("sales");
+
+                    JSONArray jsonToday = jsonResponse.getJSONArray("today");
+
+                    int todayOrders = Integer.parseInt(jsonToday.getJSONObject(0).getString("orders"));
+                    String todaySalesString = jsonToday.getJSONObject(0).getString("sales");
+
+                    JSONArray jsonCurrent = jsonResponse.getJSONArray("total");
+
+                    int currentOrders = Integer.parseInt(jsonCurrent.getJSONObject(0).getString("orders"));
+
+                    double todaySales=0, totalSales=0;
+                    int todaySalesInteger=0, totalSalesInteger=0;
+
+//                    Log.e(TAG, "todaySales = "+todaySalesString+"     condition = "+(todaySalesString!="null"));
+                    if(todaySalesString != "null" && !todaySalesString.isEmpty())
+                    {
+                        todaySales = Double.parseDouble(todaySalesString);
+                        todaySalesInteger = (int) todaySales;
+                    }
+                    if(totalSalesString != "null" && !totalSalesString.isEmpty()){
+                        totalSales = Double.parseDouble(totalSalesString);
+                        totalSalesInteger = (int) totalSales;
+                    }
+
+                    todaysOrdersTv.setText(""+todayOrders);
+                    todaysSaleTv.setText(""+todaySalesInteger);
+
+                    totalOrdersTv.setText(""+totalOrders);
+                    totalSalesTv.setText(""+totalSalesInteger);
+
+                    currentOrdersTv.setText(""+currentOrders);
+
                     maxBillId0.setText("#"+aid0);
                     maxBillId1.setText("#"+aid1);
                     maxBillId2.setText("#"+aid2);
@@ -252,6 +293,8 @@ public class ReportsFragment extends Fragment {
                     payMethodAmt3.setText("₹"+pamt3);
                     payMethodAmt4.setText("₹"+pamt4);
 
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Log.e(TAG, "Reports Fragment : Exception caught  " + e);
@@ -266,15 +309,16 @@ public class ReportsFragment extends Fragment {
             }
         }) {
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<>();
 
-                SharedPreferences sharedPreferences = getContext().getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
+                SharedPreferences sharedPreferences = getContext().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
                 String ACCESS_TOKEN = sharedPreferences.getString(EMP_TOKEN,"");
                 params.put("Content-Type", "application/json; charset=UTF-8");
                 params.put("x-access-token", ACCESS_TOKEN);
 
                 Log.e("x-access-token", "It is = "+ACCESS_TOKEN);
+
                 return params;
             }
         };

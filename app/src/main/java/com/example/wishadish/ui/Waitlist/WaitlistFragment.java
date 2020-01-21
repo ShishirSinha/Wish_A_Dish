@@ -27,6 +27,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.wishadish.AlarmReceiver;
+import com.example.wishadish.MainActivity;
 import com.example.wishadish.Utility.MySingleton;
 import com.example.wishadish.R;
 import com.example.wishadish.WaitListAdapter;
@@ -50,7 +51,6 @@ import static com.example.wishadish.ui.Reports.ReportsFragment.RETRY_SECONDS;
 
 public class WaitlistFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
     private final String TAG = this.getClass().getSimpleName();
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -59,9 +59,10 @@ public class WaitlistFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                ViewModelProviders.of(this).get(GalleryViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
+
+        ((MainActivity) getActivity()).setActionBarTitle("Waitlist");
 
         setHasOptionsMenu(true);
 
@@ -85,7 +86,7 @@ public class WaitlistFragment extends Fragment {
 
         final String WAITLIST_URL = BASE_URL + "/waitlist";
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, WAITLIST_URL, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, WAITLIST_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -145,15 +146,16 @@ public class WaitlistFragment extends Fragment {
             }
         }) {
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<>();
 
-                SharedPreferences sharedPreferences = getContext().getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
+                SharedPreferences sharedPreferences = getContext().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
                 String ACCESS_TOKEN = sharedPreferences.getString(EMP_TOKEN,"");
                 params.put("Content-Type", "application/json; charset=UTF-8");
                 params.put("x-access-token", ACCESS_TOKEN);
 
                 Log.e("x-access-token", "It is = "+ACCESS_TOKEN);
+
                 return params;
             }
 

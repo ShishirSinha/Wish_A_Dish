@@ -10,9 +10,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.wishadish.R;
+
+import java.util.Objects;
 
 public class AddNewTableFrag extends Fragment {
 
@@ -47,5 +50,17 @@ public class AddNewTableFrag extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar().hide();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        ((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar().show();
     }
 }

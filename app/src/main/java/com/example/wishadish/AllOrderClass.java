@@ -5,10 +5,10 @@ public class AllOrderClass {
     private String mTableNumber;
     private String mTime;
     private String mOrdernumber;
-    private int mOrderAmount;
+    private double mOrderAmount;
     private String mDate;
 
-    public AllOrderClass(String mOrdernumber, int mOrderAmount, String mDate, String mTime, String mTableNumber) {
+    public AllOrderClass(String mOrdernumber, double mOrderAmount, String mDate, String mTime, String mTableNumber) {
         this.mOrdernumber = mOrdernumber;
         this.mOrderAmount = mOrderAmount;
         this.mDate = mDate;
@@ -24,11 +24,11 @@ public class AllOrderClass {
         this.mOrdernumber = mOrdernumber;
     }
 
-    public int getmOrderAmount() {
+    public double getmOrderAmount() {
         return mOrderAmount;
     }
 
-    public void setmOrderAmount(int mOrderAmount) {
+    public void setmOrderAmount(double mOrderAmount) {
         this.mOrderAmount = mOrderAmount;
     }
 

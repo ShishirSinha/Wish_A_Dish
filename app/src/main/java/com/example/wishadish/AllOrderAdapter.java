@@ -98,7 +98,7 @@ public class AllOrderAdapter extends RecyclerView.Adapter<AllOrderAdapter.ViewHo
         holder.allOrderDateTv.setText(mAllOrderList.get(position).getmDate());
         holder.allOrderNumTv.setText("Order #"+mAllOrderList.get(position).getmOrdernumber());
         holder.allOrderAmountTv.setText("₹"+mAllOrderList.get(position).getmOrderAmount());
-        holder.allOrderTimeTv.setText(mAllOrderList.get(position).getmDate());
+        holder.allOrderTimeTv.setText(mAllOrderList.get(position).getmTime());
     }
 
     @Override

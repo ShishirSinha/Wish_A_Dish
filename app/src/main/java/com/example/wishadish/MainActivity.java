@@ -1,8 +1,18 @@
 package com.example.wishadish;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.example.wishadish.Utility.MySingleton;
 import com.example.wishadish.ui.Bills.CurrentOrdersFragment;
 import com.example.wishadish.ui.Bills.TotalBillsFragment;
 import com.example.wishadish.ui.HumanResources.AddEmployeeFragment;
@@ -40,10 +50,24 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import static android.view.View.GONE;
+import static com.example.wishadish.LoginSessionManager.EMP_ID;
+import static com.example.wishadish.LoginSessionManager.EMP_TOKEN;
+import static com.example.wishadish.LoginSessionManager.PREF_NAME;
+import static com.example.wishadish.ui.Reports.ReportsFragment.BASE_URL;
+import static com.example.wishadish.ui.Reports.ReportsFragment.NO_OF_RETRY;
+import static com.example.wishadish.ui.Reports.ReportsFragment.RETRY_SECONDS;
 
 public class MainActivity extends AppCompatActivity implements SelectPrinterFrag.sendPrinterNameInterface {
 
+    private final String TAG = getClass().getSimpleName();
     private AppBarConfiguration mAppBarConfiguration;
     private DrawerLayout drawer;
     private Toolbar toolbar;
@@ -527,5 +551,9 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
         menu.findItem(R.id.nav_add_employee).setVisible(false);
         menu.findItem(R.id.nav_send).setVisible(false);
         menu.findItem(R.id.nav_attendance).setVisible(false);
+    }
+
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
     }
 }

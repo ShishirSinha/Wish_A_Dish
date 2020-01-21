@@ -22,6 +22,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.wishadish.MainActivity;
 import com.example.wishadish.Utility.MySingleton;
 import com.example.wishadish.R;
 
@@ -40,15 +41,14 @@ import static com.example.wishadish.ui.Reports.ReportsFragment.RETRY_SECONDS;
 
 public class AddEmployeeFragment extends Fragment {
 
-    private AddEmployeeViewModel addEmployeeViewModel;
     private final String TAG = this.getClass().getSimpleName();
-
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        addEmployeeViewModel = ViewModelProviders.of(this).get(AddEmployeeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_add_employee, container, false);
+
+        ((MainActivity) getActivity()).setActionBarTitle("Add Employee");
 
         setHasOptionsMenu(true);
 
