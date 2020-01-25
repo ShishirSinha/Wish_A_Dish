@@ -82,6 +82,10 @@
             android:id="@+id/listview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:paddingTop="10dp"
+            android:background="#ffffff"
             android:visibility="gone"/>
 
         <androidx.recyclerview.widget.RecyclerView

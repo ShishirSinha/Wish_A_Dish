@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.SyncStateContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -30,6 +31,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.wishadish.DataBases.AppExecutors;
+import com.example.wishadish.DataBases.CompleteMenuTable;
+import com.example.wishadish.DataBases.DbRepository;
+import com.example.wishadish.DataBases.MenuDb;
 import com.example.wishadish.MainActivity;
 import com.example.wishadish.MenuItemClass;
 import com.example.wishadish.MenuItemAdapter;
@@ -75,10 +80,15 @@ public class HomeFragment extends Fragment {
     private RecyclerView.Adapter adapter2;
     private LinearLayout tableModeLL;
 
+    private List<CompleteMenuTable> completeMenuList;
     //This arraylist will have data as pulled from server. This will keep cumulating.
     private List<MenuItemClass> productResults;
     //Based on the search string, only filtered products will be moved here from productResults
     private List<MenuItemClass> filteredProductResults;
+
+    private MenuDb mDb;
+
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -93,6 +103,10 @@ public class HomeFragment extends Fragment {
         ((MainActivity) getActivity()).setActionBarTitle("Home");
 
         setHasOptionsMenu(true);
+
+        mDb = MenuDb.getInstance(getContext().getApplicationContext());
+
+        getMenuList();
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SETTINGS_PREF, Context.MODE_PRIVATE);
         boolean b = sharedPreferences.getBoolean(TABLE_MODE, false);
@@ -172,17 +186,28 @@ public class HomeFragment extends Fragment {
 
                 @Override
                 public boolean onQueryTextChange(String newText) {
+
+                    newText = newText.trim();
+
                     if(newText.length()>2 && !(newText.substring(0,3).equalsIgnoreCase(previousQuertText))) {
                         searchLV.setVisibility(View.VISIBLE);
-                        getMenuList(newText);
+                        productResults.clear();
+                        displaySearchResults(newText);
                         previousQuertText = newText.substring(0,3);
                         Log.e(TAG, "ptext = "+previousQuertText);
+                        Log.e(TAG,"1  newText="+newText+"  "+"previousText="+previousQuertText+"  productResults.size()= "+ productResults.size());
+                    }
+                    else if(newText.length()>2 && newText.substring(0,3).equalsIgnoreCase(previousQuertText)){
+                        searchLV.setVisibility(View.VISIBLE);
+                        displaySearchResultFromPreviousList(newText);
+                        Log.e(TAG,"2  newText="+newText+"  "+"previousText="+previousQuertText+"  productResults.size()= "+ productResults.size());
                     }
                     else if(newText.length()<=2){
-                        productResults.clear();
                         filteredProductResults.clear();
                         searchLV.setVisibility(View.GONE);
+                        Log.e(TAG,"3  newText="+newText+"  "+"previousText="+previousQuertText+"  productResults.size()= "+ productResults.size());
                     }
+
                     return false;
                 }
             });
@@ -191,7 +216,58 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
-    private void getMenuList(final String itemname) {
+    private void displaySearchResultFromPreviousList(String itemname){
+        filterProductArray(itemname);
+        searchLV.setAdapter(new SearchResultsAdapter(getActivity(),filteredProductResults));
+    }
+
+    private void displaySearchResults(final String itemname){
+
+        final MenuDb appDb = MenuDb.getInstance(getContext());
+
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                completeMenuList = appDb.completeMenuTableDao().getAllItems();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.e(TAG, "complete menu size = "+completeMenuList.size());
+
+                        for(int i=0;i<completeMenuList.size();i++) {
+                            String name = completeMenuList.get(i).getName();
+                            Double rate = Double.parseDouble(completeMenuList.get(i).getRate());
+                            String type = completeMenuList.get(i).getVeg();
+                            int id = Integer.parseInt(completeMenuList.get(i).getId());
+
+                            MenuItemClass tempItem = new MenuItemClass(name, 0, type, rate);
+
+                            String matchfound = "N";
+
+                            for (int j = 0; i < productResults.size(); j++) {
+                                if (productResults.get(j).getmItemName().equals(tempItem.getmItemName())) {
+                                    matchfound = "Y";
+                                    break;
+                                }
+                            }
+
+                            if (matchfound.equals("N")) {
+                                productResults.add(tempItem);
+                            }
+                        }
+
+                        //calling this method to filter the search results from productResults and move them to
+                        //filteredProductResults
+                        filterProductArray(itemname);
+                        searchLV.setAdapter(new SearchResultsAdapter(getActivity(),filteredProductResults));
+                    }
+                });
+            }
+        });
+
+    }
+
+    private void getMenuList() {
 
         Log.e(TAG, "called : getMenuList()");
 
@@ -213,45 +289,47 @@ public class HomeFragment extends Fragment {
                         return;
                     }
 
-
                     JSONArray itemlist = jsonResponse.getJSONArray("menu");
+
+                    completeMenuList = new ArrayList<>();
+                    final MenuDb appDb = MenuDb.getInstance(getContext());
 
                     for(int i = 0; i < itemlist.length(); i++) {
 
                         JSONObject jo = itemlist.getJSONObject(i);
 
+                        String id = jo.getString("id");
                         String name = jo.getString("name");
-                        Double rate = Double.parseDouble(jo.getString("rate"));
-                        int veg = Integer.parseInt(jo.getString("veg"));
-                        int id = Integer.parseInt(jo.getString("id"));
+                        String rate = jo.getString("rate");
+                        String veg = jo.getString("veg");
+                        String unit = jo.getString("unit");
+                        String gst_per = jo.getString("gst_per");
+                        String ttype_tag = jo.getString("ttype_tag");
+                        String geo_tag = jo.getString("geo_tag");
+                        String time_created = jo.getString("time_created");
+                        String status = jo.getString("status");
 
-                        String type="";
+                        if(veg=="1")
+                            veg = "veg";
+                        else if(veg=="0")
+                            veg = "non-veg";
 
-                        if(veg==1)
-                            type = "veg";
-                        else if(veg==0)
-                            type = "non-veg";
+                        final CompleteMenuTable x = new CompleteMenuTable(name,id,unit,rate,gst_per,ttype_tag,geo_tag,veg,time_created,status);
 
-                        MenuItemClass tempItem = new MenuItemClass(name,0, type, rate);
-
-                        String  matchfound = "N";
-
-                        for(int j=0;i<productResults.size();j++){
-                            if(productResults.get(j).getmItemName().equals(tempItem.getmItemName())) {
-                                matchfound = "Y";
-                                break;
+                        final int finalI = i;
+                        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                appDb.completeMenuTableDao().insert(x);
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Log.e(TAG, "inserted "+ finalI);
+                                    }
+                                });
                             }
-                        }
-
-                        if(matchfound.equals("N")){
-                            productResults.add(tempItem);
-                        }
+                        });
                     }
-
-                    //calling this method to filter the search results from productResults and move them to
-                    //filteredProductResults
-                    filterProductArray(itemname);
-                    searchLV.setAdapter(new SearchResultsAdapter(getActivity(),filteredProductResults));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -277,12 +355,11 @@ public class HomeFragment extends Fragment {
                 String mid = sharedPreferences.getString(EMP_ID,"");
                 params.put("Content-Type", "application/json; charset=UTF-8");
                 params.put("x-access-token", ACCESS_TOKEN);
-                params.put("name", itemname);
+                params.put("name", "");
                 params.put("merchant_id", mid);
 
                 Log.e("x-access-token", "It is = "+ACCESS_TOKEN);
-                Log.e("merchant_id", "it is = "+mid);
-                Log.e("name", itemname);
+                Log.e("merchant_id", "it is = "+mid);;
 
                 return params;
             }
@@ -310,7 +387,7 @@ public class HomeFragment extends Fragment {
         filteredProductResults.clear();
         for (int i = 0; i < productResults.size(); i++) {
             pName = productResults.get(i).getmItemName().toLowerCase();
-            if ( pName.contains(newText.toLowerCase())) {
+            if (pName.contains(newText.toLowerCase())) {
                 filteredProductResults.add(productResults.get(i));
             }
         }
