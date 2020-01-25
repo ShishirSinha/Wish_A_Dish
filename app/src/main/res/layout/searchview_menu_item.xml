@@ -2,76 +2,85 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:background="#ffffff"
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/searchResultItemTypeIv"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="5dp"
-                android:src="@drawable/veg_icon" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/searchResultItemTypeIv"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="5dp"
+                    android:src="@drawable/veg_icon" />
+
+                <TextView
+                    android:id="@+id/searchResultItemNameTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    android:paddingStart="6dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="3dp"
+                    android:text="Gobi Manchurian"
+                    android:textColor="#1e1e1e"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/searchResultItemNameTv"
+                android:id="@+id/searchResultItemRateTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="bottom"
-                android:paddingStart="6dp"
-                android:paddingEnd="20dp"
+                android:layout_marginStart="41dp"
+                android:gravity="top"
                 android:paddingBottom="3dp"
-                android:text="Gobi Manchurian"
-                android:textStyle="bold"
+                android:text="Rs 100"
                 android:textColor="#1e1e1e"
                 android:textSize="12sp" />
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/searchResultItemRateTv"
-            android:layout_width="match_parent"
+            android:id="@+id/addItemFromSearchTv"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="top"
-            android:layout_marginStart="41dp"
-            android:paddingBottom="3dp"
-            android:text="Rs 100"
-            android:textColor="#1e1e1e"
-            android:textSize="12sp" />
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/empty_black_border"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="ADD"
+            android:textColor="#6DA710"
+            android:textSize="13sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/addItemFromSearchTv"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="3dp"
-        android:textSize="13sp"
-        android:background="@drawable/empty_black_border"
-        android:text="ADD"
-        android:clickable="true"
-        android:textColor="#6DA710"
-        android:textStyle="bold"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:gravity="center_vertical" />
 
 </LinearLayout>

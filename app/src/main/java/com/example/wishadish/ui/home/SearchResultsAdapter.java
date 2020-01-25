@@ -9,11 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.wishadish.MenuItemAdapter;
 import com.example.wishadish.MenuItemClass;
 import com.example.wishadish.R;
 
@@ -28,8 +31,10 @@ public  class SearchResultsAdapter extends BaseAdapter {
     int count;
     Typeface type;
     Context context;
+    ListView listView;
+    private MenuItemAdapter adapter;
 
-    public SearchResultsAdapter(Context context, List<MenuItemClass> menuItemDetails) {
+    public SearchResultsAdapter(Context context, List<MenuItemClass> menuItemDetails, ListView listView, MenuItemAdapter adapter) {
 
         layoutInflater = LayoutInflater.from(context);
         this.menuItemDetails = new ArrayList<>();
@@ -37,12 +42,13 @@ public  class SearchResultsAdapter extends BaseAdapter {
         this.menuItemDetails = menuItemDetails;
         this.count= menuItemDetails.size();
         this.context = context;
-
+        this.listView = listView;
+        this.adapter = adapter;
     }
 
     @Override
     public int getCount() {
-        return count;
+        return menuItemDetails.size();
     }
 
     @Override
@@ -56,7 +62,7 @@ public  class SearchResultsAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, final ViewGroup parent) {
 
         ViewHolder holder;
         final MenuItemClass tempProduct = menuItemDetails.get(position);
@@ -82,15 +88,21 @@ public  class SearchResultsAdapter extends BaseAdapter {
             holder.menuItemTypeIv.setImageResource(R.drawable.non_veg_icon);
         holder.menuItemNameTv.setText(tempProduct.getmItemName());
         holder.menuItemRateTv.setText("₹ "+((int) tempProduct.getmCost()));
-        final int x = position;
+
+//        final int x = position;
 
         holder.addMenuItemTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, ""+x+" "+tempProduct.getmItemName()+" added!",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, tempProduct.getmItemName()+" added!",Toast.LENGTH_SHORT).show();
+//                menuItemDetails.remove(x);
+//                notifyDataSetChanged();
+                Log.e("Add Button Clicked","*************************************************");
+                Log.e("search Adapter",""+tempProduct.getmItemName()+"  "+1+"  "+ tempProduct.getType()+"  "+ tempProduct.getmCost());
+                adapter.addItem(new MenuItemClass(tempProduct.getmItemName(),1, tempProduct.getType(), tempProduct.getmCost()));
+                listView.setVisibility(View.GONE);
             }
         });
-
 
         return convertView;
     }

@@ -5,23 +5,21 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.SyncStateContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,7 +31,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.wishadish.DataBases.AppExecutors;
 import com.example.wishadish.DataBases.CompleteMenuTable;
-import com.example.wishadish.DataBases.DbRepository;
 import com.example.wishadish.DataBases.MenuDb;
 import com.example.wishadish.MainActivity;
 import com.example.wishadish.MenuItemClass;
@@ -66,14 +63,15 @@ public class HomeFragment extends Fragment {
 
     private final String TAG = this.getClass().getSimpleName();
     private RecyclerView recyclerView1;
-    private RecyclerView.Adapter adapter1;
+    private MenuItemAdapter adapter1;
     private List<MenuItemClass> menuItems;
     private LinearLayout menuModeLL;
-    private RelativeLayout totalAmountRL;
+    private RelativeLayout totalAmountBtnRL;
     private SearchView searchView;
     private String previousQuertText;
     private ListView searchLV;
-    private RecyclerView.Adapter searchAdapter;
+    private LinearLayout totalAmountLL;
+    private TextView totalAmountTv;
 
     private List<TableInfoClass> tableList;
     private RecyclerView recyclerView2;
@@ -138,9 +136,12 @@ public class HomeFragment extends Fragment {
 
             tableModeLL = root.findViewById(R.id.homeTableTypeLL);
             menuModeLL = root.findViewById(R.id.homeMenuTypeLL);
+            totalAmountLL = root.findViewById(R.id.totalAmountLL);
+            totalAmountTv = root.findViewById(R.id.totalAmountTv);
 
             menuModeLL.setVisibility(View.VISIBLE);
             tableModeLL.setVisibility(View.GONE);
+            totalAmountLL.setVisibility(View.GONE);
 
             searchView = root.findViewById(R.id.searchView);
             new Handler().postDelayed(new Runnable() {
@@ -155,22 +156,22 @@ public class HomeFragment extends Fragment {
             filteredProductResults = new ArrayList<>();
 
             searchView = root.findViewById(R.id.searchView);
-            totalAmountRL = root.findViewById(R.id.totalAmountBtnRL);
+            totalAmountBtnRL = root.findViewById(R.id.totalAmountBtnRL);
             searchLV = root.findViewById(R.id.listview);
             recyclerView1 = root.findViewById(R.id.rv1);
             recyclerView1.setLayoutManager(new LinearLayoutManager(getContext()));
 
-            MenuItemClass mi1 = new MenuItemClass("Paneer Butter Masala", 0, "Veg", 320);
-            MenuItemClass mi2 = new MenuItemClass("Butter Naan", 1, "Chapati", 400);
-            menuItems.add(mi1);
-            menuItems.add(mi2);
-
-            adapter1 = new MenuItemAdapter(menuItems, getActivity().getApplicationContext());
+//            MenuItemClass mi1 = new MenuItemClass("Paneer Butter Masala", 0, "Veg", 320);
+//            MenuItemClass mi2 = new MenuItemClass("Butter Naan", 1, "Chapati", 400);
+//            menuItems.add(mi1);
+//            menuItems.add(mi2);
+//
+            adapter1 = new MenuItemAdapter(menuItems, getActivity().getApplicationContext(), totalAmountLL,totalAmountTv);
             recyclerView1.setAdapter(adapter1);
 
             searchView.setIconified(false);
 
-            totalAmountRL.setOnClickListener(new View.OnClickListener() {
+            totalAmountBtnRL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getActivity(), OrderOverviewActivity.class);
@@ -218,7 +219,7 @@ public class HomeFragment extends Fragment {
 
     private void displaySearchResultFromPreviousList(String itemname){
         filterProductArray(itemname);
-        searchLV.setAdapter(new SearchResultsAdapter(getActivity(),filteredProductResults));
+        searchLV.setAdapter(new SearchResultsAdapter(getActivity(),filteredProductResults, searchLV, adapter1));
     }
 
     private void displaySearchResults(final String itemname){
@@ -259,7 +260,7 @@ public class HomeFragment extends Fragment {
                         //calling this method to filter the search results from productResults and move them to
                         //filteredProductResults
                         filterProductArray(itemname);
-                        searchLV.setAdapter(new SearchResultsAdapter(getActivity(),filteredProductResults));
+                        searchLV.setAdapter(new SearchResultsAdapter(getActivity(), filteredProductResults, searchLV, adapter1));
                     }
                 });
             }
