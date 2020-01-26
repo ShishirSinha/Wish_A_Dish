@@ -1,5 +1,6 @@
 package com.example.wishadish.ui.home;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -33,10 +36,9 @@ import com.example.wishadish.DataBases.AppExecutors;
 import com.example.wishadish.DataBases.CompleteMenuTable;
 import com.example.wishadish.DataBases.MenuDb;
 import com.example.wishadish.MainActivity;
-import com.example.wishadish.MenuItemClass;
 import com.example.wishadish.MenuItemAdapter;
+import com.example.wishadish.MenuItemClass;
 import com.example.wishadish.R;
-import com.example.wishadish.TableAdapter;
 import com.example.wishadish.TableInfoClass;
 import com.example.wishadish.Utility.MySingleton;
 import com.example.wishadish.ui.OrderOverview.OrderOverviewActivity;
@@ -45,6 +47,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -72,11 +75,13 @@ public class HomeFragment extends Fragment {
     private ListView searchLV;
     private LinearLayout totalAmountLL;
     private TextView totalAmountTv;
+    private LinearLayout searchviewLL;
 
     private List<TableInfoClass> tableList;
     private RecyclerView recyclerView2;
     private RecyclerView.Adapter adapter2;
     private LinearLayout tableModeLL;
+    private GridView grid;
 
     private List<CompleteMenuTable> completeMenuList;
     //This arraylist will have data as pulled from server. This will keep cumulating.
@@ -85,7 +90,6 @@ public class HomeFragment extends Fragment {
     private List<MenuItemClass> filteredProductResults;
 
     private MenuDb mDb;
-
 
 
     @Override
@@ -115,22 +119,14 @@ public class HomeFragment extends Fragment {
 
             tableModeLL = root.findViewById(R.id.homeTableTypeLL);
             menuModeLL = root.findViewById(R.id.homeMenuTypeLL);
+            grid = (GridView) root.findViewById(R.id.simpleGridView);
 
             tableModeLL.setVisibility(View.VISIBLE);
             menuModeLL.setVisibility(View.GONE);
 
             tableList = new ArrayList<>();
 
-            recyclerView2 = (RecyclerView) root.findViewById(R.id.rv4);
-            recyclerView2.setLayoutManager(new LinearLayoutManager(getContext()));
-
-            TableInfoClass mi1 = new TableInfoClass(7, 4, true);
-            TableInfoClass mi2 = new TableInfoClass(10, 6, true);
-            tableList.add(mi1);
-            tableList.add(mi2);
-
-            adapter2 = new TableAdapter(tableList, getActivity().getApplicationContext());
-            recyclerView2.setAdapter(adapter2);
+            getTableList();
 
         } else {
 
@@ -138,6 +134,7 @@ public class HomeFragment extends Fragment {
             menuModeLL = root.findViewById(R.id.homeMenuTypeLL);
             totalAmountLL = root.findViewById(R.id.totalAmountLL);
             totalAmountTv = root.findViewById(R.id.totalAmountTv);
+            searchviewLL = root.findViewById(R.id.rl3);
 
             menuModeLL.setVisibility(View.VISIBLE);
             tableModeLL.setVisibility(View.GONE);
@@ -161,12 +158,7 @@ public class HomeFragment extends Fragment {
             recyclerView1 = root.findViewById(R.id.rv1);
             recyclerView1.setLayoutManager(new LinearLayoutManager(getContext()));
 
-//            MenuItemClass mi1 = new MenuItemClass("Paneer Butter Masala", 0, "Veg", 320);
-//            MenuItemClass mi2 = new MenuItemClass("Butter Naan", 1, "Chapati", 400);
-//            menuItems.add(mi1);
-//            menuItems.add(mi2);
-//
-            adapter1 = new MenuItemAdapter(menuItems, getActivity().getApplicationContext(), totalAmountLL,totalAmountTv);
+            adapter1 = new MenuItemAdapter(menuItems, getActivity().getApplicationContext(), totalAmountLL, totalAmountTv);
             recyclerView1.setAdapter(adapter1);
 
             searchView.setIconified(false);
@@ -174,14 +166,37 @@ public class HomeFragment extends Fragment {
             totalAmountBtnRL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    int size = ((MenuItemAdapter) recyclerView1.getAdapter()).getItemCount();
+                    for (int i = 0; i < size; i++) {
+                        // Get each selected item
+                        // Do something with the item like save it to a selected items array.
+                    }
+
+                    List<MenuItemClass> itemsInList = new ArrayList<>();
+                    itemsInList = ((MenuItemAdapter) recyclerView1.getAdapter()).getListItems();
+
+                    Log.e(TAG, "size = " + itemsInList.size());
+
                     Intent intent = new Intent(getActivity(), OrderOverviewActivity.class);
+                    intent.putExtra("list", (Serializable) itemsInList);
                     startActivity(intent);
+                }
+            });
+
+            searchviewLL.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.e(TAG, "clicked!");
                 }
             });
 
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
+                    searchLV.setVisibility(View.VISIBLE);
+                    productResults.clear();
+                    displaySearchResults("");
                     return false;
                 }
 
@@ -190,23 +205,23 @@ public class HomeFragment extends Fragment {
 
                     newText = newText.trim();
 
-                    if(newText.length()>2 && !(newText.substring(0,3).equalsIgnoreCase(previousQuertText))) {
+                    Log.e(TAG, "newText ="+newText+"abc");
+
+                    if (newText.length() > 2 && !(newText.substring(0, 3).equalsIgnoreCase(previousQuertText))) {
                         searchLV.setVisibility(View.VISIBLE);
                         productResults.clear();
                         displaySearchResults(newText);
-                        previousQuertText = newText.substring(0,3);
-                        Log.e(TAG, "ptext = "+previousQuertText);
-                        Log.e(TAG,"1  newText="+newText+"  "+"previousText="+previousQuertText+"  productResults.size()= "+ productResults.size());
-                    }
-                    else if(newText.length()>2 && newText.substring(0,3).equalsIgnoreCase(previousQuertText)){
+                        previousQuertText = newText.substring(0, 3);
+                        Log.e(TAG, "ptext = " + previousQuertText);
+                        Log.e(TAG, "1  newText=" + newText + "  " + "previousText=" + previousQuertText + "  productResults.size()= " + productResults.size());
+                    } else if (newText.length() > 2 && newText.substring(0, 3).equalsIgnoreCase(previousQuertText)) {
                         searchLV.setVisibility(View.VISIBLE);
                         displaySearchResultFromPreviousList(newText);
-                        Log.e(TAG,"2  newText="+newText+"  "+"previousText="+previousQuertText+"  productResults.size()= "+ productResults.size());
-                    }
-                    else if(newText.length()<=2){
+                        Log.e(TAG, "2  newText=" + newText + "  " + "previousText=" + previousQuertText + "  productResults.size()= " + productResults.size());
+                    } else if (newText.length() <= 2) {
                         filteredProductResults.clear();
                         searchLV.setVisibility(View.GONE);
-                        Log.e(TAG,"3  newText="+newText+"  "+"previousText="+previousQuertText+"  productResults.size()= "+ productResults.size());
+                        Log.e(TAG, "3  newText=" + newText + "  " + "previousText=" + previousQuertText + "  productResults.size()= " + productResults.size());
                     }
 
                     return false;
@@ -217,12 +232,62 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
-    private void displaySearchResultFromPreviousList(String itemname){
-        filterProductArray(itemname);
-        searchLV.setAdapter(new SearchResultsAdapter(getActivity(),filteredProductResults, searchLV, adapter1));
+    class MyAdapter extends BaseAdapter {
+
+        ArrayList<TableInfoClass> list;
+        private Context context;
+
+        MyAdapter(Context context) {
+            this.context = context;
+            list = new ArrayList();
+            Log.e(TAG, "tablelist size = "+tableList.size());
+            for (int count = 0; count < tableList.size(); count++) {
+                TableInfoClass tempSchedule = new TableInfoClass(tableList.get(count).getmTableNo(), tableList.get(count).getmTableSize(), true);
+                list.add(tempSchedule);
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return list.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return list.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            TableInfoClass temptableInfo = list.get(position);
+            if (convertView == null) {
+                convertView = LayoutInflater.from(context).inflate(R.layout.table_mode_item, parent, false);
+            }
+            final TextView tableNumber = (TextView) convertView.findViewById(R.id.tableModeTableNumberTv);
+            RelativeLayout tableLL = (RelativeLayout) convertView.findViewById(R.id.tableInGridLL);
+            tableNumber.setText("Table No. #" + temptableInfo.getmTableNo());
+
+            tableLL.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getContext(), list.get(position).getmTableNo() + " clicked!", Toast.LENGTH_SHORT).show();
+                }
+            });
+            return convertView;
+        }
     }
 
-    private void displaySearchResults(final String itemname){
+    private void displaySearchResultFromPreviousList(String itemname) {
+        filterProductArray(itemname);
+        searchLV.setAdapter(new SearchResultsAdapter(getActivity(), filteredProductResults, searchLV, adapter1));
+    }
+
+    private void displaySearchResults(final String itemname) {
 
         final MenuDb appDb = MenuDb.getInstance(getContext());
 
@@ -233,9 +298,9 @@ public class HomeFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Log.e(TAG, "complete menu size = "+completeMenuList.size());
+                        Log.e(TAG, "complete menu size = " + completeMenuList.size());
 
-                        for(int i=0;i<completeMenuList.size();i++) {
+                        for (int i = 0; i < completeMenuList.size(); i++) {
                             String name = completeMenuList.get(i).getName();
                             Double rate = Double.parseDouble(completeMenuList.get(i).getRate());
                             String type = completeMenuList.get(i).getVeg();
@@ -286,7 +351,7 @@ public class HomeFragment extends Fragment {
                     int code = jsonResponse.getInt("code");
 
                     if (code != 1) {
-                        Toast.makeText(getContext(), "code + "+code, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "code + " + code, Toast.LENGTH_SHORT).show();
                         return;
                     }
 
@@ -295,7 +360,7 @@ public class HomeFragment extends Fragment {
                     completeMenuList = new ArrayList<>();
                     final MenuDb appDb = MenuDb.getInstance(getContext());
 
-                    for(int i = 0; i < itemlist.length(); i++) {
+                    for (int i = 0; i < itemlist.length(); i++) {
 
                         JSONObject jo = itemlist.getJSONObject(i);
 
@@ -310,24 +375,24 @@ public class HomeFragment extends Fragment {
                         String time_created = jo.getString("time_created");
                         String status = jo.getString("status");
 
-                        if(veg=="1")
+                        if (veg == "1")
                             veg = "veg";
-                        else if(veg=="0")
+                        else if (veg == "0")
                             veg = "non-veg";
 
-                        final CompleteMenuTable x = new CompleteMenuTable(name,id,unit,rate,gst_per,ttype_tag,geo_tag,veg,time_created,status);
+                        final CompleteMenuTable x = new CompleteMenuTable(name, id, unit, rate, gst_per, ttype_tag, geo_tag, veg, time_created, status);
 
                         final int finalI = i;
                         AppExecutors.getInstance().diskIO().execute(new Runnable() {
                             @Override
                             public void run() {
                                 appDb.completeMenuTableDao().insert(x);
-                                getActivity().runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Log.e(TAG, "inserted "+ finalI);
-                                    }
-                                });
+//                                getActivity().runOnUiThread(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        Log.e(TAG, "inserted "+ finalI);
+//                                    }
+//                                });
                             }
                         });
                     }
@@ -352,15 +417,16 @@ public class HomeFragment extends Fragment {
                 HashMap<String, String> params = new HashMap<>();
 
                 SharedPreferences sharedPreferences = getContext().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-                String ACCESS_TOKEN = sharedPreferences.getString(EMP_TOKEN,"");
-                String mid = sharedPreferences.getString(EMP_ID,"");
+                String ACCESS_TOKEN = sharedPreferences.getString(EMP_TOKEN, "");
+                String mid = sharedPreferences.getString(EMP_ID, "");
                 params.put("Content-Type", "application/json; charset=UTF-8");
                 params.put("x-access-token", ACCESS_TOKEN);
                 params.put("name", "");
                 params.put("merchant_id", mid);
 
-                Log.e("x-access-token", "It is = "+ACCESS_TOKEN);
-                Log.e("merchant_id", "it is = "+mid);;
+                Log.e("x-access-token", "It is = " + ACCESS_TOKEN);
+                Log.e("merchant_id", "it is = " + mid);
+                ;
 
                 return params;
             }
@@ -372,11 +438,10 @@ public class HomeFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings :
-            {
+            case R.id.action_settings: {
                 Fragment myFragment = new waitlistFrag();
                 getActivity().getSupportFragmentManager().beginTransaction().add(android.R.id.content, myFragment).commit();
-                Log.e("clicked","yesss");
+                Log.e("clicked", "yesss");
                 return true;
             }
         }
@@ -392,5 +457,94 @@ public class HomeFragment extends Fragment {
                 filteredProductResults.add(productResults.get(i));
             }
         }
+    }
+
+    private void getTableList() {
+
+        Log.e(TAG, "called : loadWaitingList()");
+
+        final ProgressDialog progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+
+        String GET_TABLES_URL = BASE_URL + "/dashboard";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, GET_TABLES_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Log.e(TAG, response);
+
+                progressDialog.dismiss();
+
+                try {
+
+                    JSONObject jsonResponse = new JSONObject(response);
+                    int code = jsonResponse.getInt("code");
+
+                    if (code != 1) {
+                        Toast.makeText(getContext(), "code + " + code, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    JSONArray array1 = jsonResponse.getJSONArray("tables");
+
+                    for (int i = 0; i < array1.length(); i++) {
+
+                        JSONObject jo = array1.getJSONObject(i);
+
+                        String id = jo.getString("id");
+                        int table_id = Integer.parseInt(jo.getString("table_id"));
+                        int size = Integer.parseInt(jo.getString("size"));
+                        String date = jo.getString("date");
+                        String status = jo.getString("status");
+                        String active = jo.getString("active");
+
+                        Log.e("active", ""+id+"  "+active);
+
+                        boolean activeBool;
+                        if (active.equals("1")) {
+                            TableInfoClass tempItem = new TableInfoClass(table_id, size, true);
+                            tableList.add(tempItem);
+                        }
+                    }
+
+                    Log.e(TAG, "tableList = "+tableList.size());
+
+                    MyAdapter myAdapter = new MyAdapter(getActivity());
+                    grid.setAdapter(myAdapter);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, "loadWaitlist : Exception caught  " + e);
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("error", error.toString());
+                Toast.makeText(getContext(), "Error in loadWaitingList() !", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<>();
+
+                SharedPreferences sharedPreferences = getContext().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+                String ACCESS_TOKEN = sharedPreferences.getString(EMP_TOKEN, "");
+                String mid = sharedPreferences.getString(EMP_ID, "");
+                params.put("Content-Type", "application/json; charset=UTF-8");
+                params.put("x-access-token", ACCESS_TOKEN);
+                params.put("merchant_id", mid);
+
+                Log.e("x-access-token", "It is = " + ACCESS_TOKEN);
+
+                return params;
+            }
+        };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(RETRY_SECONDS, NO_OF_RETRY, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
     }
 }

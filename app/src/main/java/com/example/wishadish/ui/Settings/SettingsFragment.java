@@ -89,8 +89,11 @@ public class SettingsFragment extends Fragment {
                     editor.putBoolean(TABLE_MODE,true);
                     editor.commit();
 
-                    Intent intent = new Intent(getContext(), AddEditTablesActivity.class);
-                    startActivity(intent);
+                    Fragment fragment = new HomeFragment();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.flcontent, fragment ); // give your fragment container id in first parameter
+                    transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+                    transaction.commit();
                 } else {
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putBoolean(TABLE_MODE,false);
@@ -172,11 +175,8 @@ public class SettingsFragment extends Fragment {
                 editor.putBoolean(TABLE_MODE,true);
                 editor.commit();
 
-                Fragment fragment = new HomeFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.flcontent, fragment ); // give your fragment container id in first parameter
-                transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
-                transaction.commit();
+                Intent intent = new Intent(getContext(), AddEditTablesActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -208,8 +208,6 @@ public class SettingsFragment extends Fragment {
 
                 Log.e(TAG, response);
 
-                //mProgressBar.setVisibility(View.GONE);
-
                 try {
 
                     JSONObject jsonResponse = new JSONObject(response);
@@ -232,7 +230,6 @@ public class SettingsFragment extends Fragment {
 //                    Double ServiceChargeValue = jsonSettings.getJSONObject(0).getDouble("ServiceChargeValue");
 //                    Double HappyHours = jsonSettings.getJSONObject(0).getDouble("HappyHours");
 //                    String startTime = jsonSettings.getJSONObject(0).getString("ServiceChargeValue");
-//
 
 
                 } catch (JSONException e) {

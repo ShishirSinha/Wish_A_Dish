@@ -7,7 +7,9 @@
     android:clickable="true"
     android:background="@drawable/rounded_2_top_sides_grey"
     android:id="@+id/menuCFRl"
-    android:paddingStart="30dp">
+    android:paddingStart="30dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp">
 
     <TextView
         android:id="@+id/menuCFTv"

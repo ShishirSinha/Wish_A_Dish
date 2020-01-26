@@ -1,6 +1,8 @@
 package com.example.wishadish;
 
-public class MenuItemClass {
+import java.io.Serializable;
+
+public class MenuItemClass implements Serializable {
 
     private String mItemName;
     private int mQuantity;

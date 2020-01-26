@@ -199,17 +199,11 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
 
                 if(menu.findItem(R.id.nav_slideshow).isVisible()) {
                     closeBills();
-                    menu.findItem(R.id.nav_human_resources).setVisible(true);
-                    menu.findItem(R.id.nav_gallery).setVisible(true);
                 }
                 else{
                     billsIv.setImageResource(R.drawable.arrow_drop_up_black_24dp);
                     menu.findItem(R.id.nav_slideshow).setVisible(true);
                     menu.findItem(R.id.nav_tools).setVisible(true);
-                    menu.findItem(R.id.nav_human_resources).setVisible(false);
-                    menu.findItem(R.id.nav_gallery).setVisible(false);
-                    menu.findItem(R.id.nav_share).setVisible(true);
-                    menu.findItem(R.id.nav_reports).setVisible(true);
                 }
             }
         });
@@ -226,8 +220,6 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
                 setTitle("Current Orders");
                 drawer.closeDrawers();
                 closeBills();
-                menu.findItem(R.id.nav_human_resources).setVisible(true);
-                menu.findItem(R.id.nav_gallery).setVisible(true);
             }
         });
 
@@ -243,8 +235,6 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
                 setTitle("Total Bills");
                 closeBills();
                 drawer.closeDrawers();
-                menu.findItem(R.id.nav_human_resources).setVisible(true);
-                menu.findItem(R.id.nav_gallery).setVisible(true);
             }
         });
 
@@ -259,18 +249,12 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
 
                 if(menu.findItem(R.id.nav_send).isVisible()) {
                     closeHumanResources();
-                    menu.findItem(R.id.nav_gallery).setVisible(true);
-                    menu.findItem(R.id.nav_reports).setVisible(true);
-                    menu.findItem(R.id.nav_share).setVisible(true);
                 }
                 else{
                     humanResourcesIv.setImageResource(R.drawable.arrow_drop_up_black_24dp);
                     menu.findItem(R.id.nav_add_employee).setVisible(true);
                     menu.findItem(R.id.nav_send).setVisible(true);
                     menu.findItem(R.id.nav_attendance).setVisible(true);
-                    menu.findItem(R.id.nav_gallery).setVisible(false);
-                    menu.findItem(R.id.nav_share).setVisible(false);
-                    menu.findItem(R.id.nav_reports).setVisible(false);
                 }
             }
         });
@@ -285,9 +269,6 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
                 setTitle("Add Employee");
                 drawer.closeDrawers();
                 closeHumanResources();
-                menu.findItem(R.id.nav_gallery).setVisible(true);
-                menu.findItem(R.id.nav_share).setVisible(true);
-                menu.findItem(R.id.nav_reports).setVisible(true);
             }
         });
 
@@ -301,9 +282,6 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
                 setTitle("View Employees");
                 drawer.closeDrawers();
                 closeHumanResources();
-                menu.findItem(R.id.nav_gallery).setVisible(true);
-                menu.findItem(R.id.nav_share).setVisible(true);
-                menu.findItem(R.id.nav_reports).setVisible(true);
             }
         });
 
@@ -319,9 +297,6 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
 //                setTitle("Attendance");
                 drawer.closeDrawers();
                 closeHumanResources();
-                menu.findItem(R.id.nav_gallery).setVisible(true);
-                menu.findItem(R.id.nav_share).setVisible(true);
-                menu.findItem(R.id.nav_reports).setVisible(true);
             }
         });
 
@@ -337,7 +312,6 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
                 drawer.closeDrawers();
                 closeBills();
                 closeHumanResources();
-                menu.findItem(R.id.nav_human_resources).setVisible(true);
             }
         });
 
@@ -353,8 +327,6 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
                 drawer.closeDrawers();
                 closeBills();
                 closeHumanResources();
-                menu.findItem(R.id.nav_human_resources).setVisible(true);
-                menu.findItem(R.id.nav_gallery).setVisible(true);
             }
         });
 
@@ -370,9 +342,6 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
                 drawer.closeDrawers();
                 closeBills();
                 closeHumanResources();
-                menu.findItem(R.id.nav_human_resources).setVisible(true);
-                menu.findItem(R.id.nav_gallery).setVisible(true);
-                menu.findItem(R.id.nav_share).setVisible(true);
             }
         });
 
@@ -385,11 +354,6 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
 
                 closeBills();
                 closeHumanResources();
-
-                menu.findItem(R.id.nav_human_resources).setVisible(true);
-                menu.findItem(R.id.nav_gallery).setVisible(true);
-                menu.findItem(R.id.nav_share).setVisible(true);
-                menu.findItem(R.id.nav_reports).setVisible(true);
 
                 new LoginSessionManager(MainActivity.this).logout();
                 finish();
@@ -556,4 +520,34 @@ public class MainActivity extends AppCompatActivity implements SelectPrinterFrag
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
     }
+
+
+//        final FragmentManager fragmentManager = getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.replace(R.id.flcontent, fragment);
+//        // 1. Know how many fragments there are in the stack
+//        final int count = fragmentManager.getBackStackEntryCount();
+//        // 2. If the fragment is **not** "home type", save it to the stack
+//        if( !name.equals("Home") ) {
+//            fragmentTransaction.addToBackStack(name);
+//        }
+//        // Commit !
+//        fragmentTransaction.commit();
+//        // 3. After the commit, if the fragment is not an "home type" the back stack is changed, triggering the
+//        // OnBackStackChanged callback
+//        fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+//            @Override
+//            public void onBackStackChanged() {
+//                // If the stack decreases it means I clicked the back button
+//                if( fragmentManager.getBackStackEntryCount() <= count){
+//                    // pop all the fragment and remove the listener
+//                    fragmentManager.popBackStack(name, POP_BACK_STACK_INCLUSIVE);
+//                    fragmentManager.removeOnBackStackChangedListener(this);
+//                    // set the home button selected
+////                    navigation.getMenu().getItem(0).setChecked(true);
+//                    setTitle("abc");
+//                }
+//            }
+//        });
+//    }
 }

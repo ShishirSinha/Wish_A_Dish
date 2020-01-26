@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/homeMenuTypeLL"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,17 +18,25 @@
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
+            <LinearLayout
+                android:id="@+id/rl3"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1.5"
+                android:clickable="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="7dp" >
+
                 <SearchView
                     android:id="@+id/searchView"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_weight="1.5"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="7dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:background="@drawable/spinner_border"
                     android:iconifiedByDefault="false"
                     android:inputType="text"
-                    android:queryHint="Search" />
+                    android:queryHint="Search"/>
+
+            </LinearLayout>
 
             <!--        <Spinner-->
             <!--            android:id="@+id/spinner"-->
@@ -155,17 +162,22 @@
 
     <LinearLayout
         android:id="@+id/homeTableTypeLL"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="10dp">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv4"
-            android:layout_width="match_parent"
+        <GridView
+            android:id="@+id/simpleGridView"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"/>
+            android:footerDividersEnabled="false"
+            android:padding="5dp"
+            android:numColumns="2" />
 
     </LinearLayout>
 

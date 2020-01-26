@@ -9,14 +9,18 @@
     <ScrollView
         android:id="@+id/menuItemScrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_above="@id/addNewItemBtn">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv7"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="15dp" />
 
     </ScrollView>
@@ -25,9 +29,10 @@
         android:id="@+id/addNewItemBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/menuItemScrollView"
+        android:layout_above="@id/orderOverviewTotalAmountLL"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/rounded_button"
         android:paddingStart="30dp"
         android:paddingTop="10dp"
@@ -40,6 +45,7 @@
 
 
     <LinearLayout
+        android:id="@+id/orderOverviewTotalAmountLL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

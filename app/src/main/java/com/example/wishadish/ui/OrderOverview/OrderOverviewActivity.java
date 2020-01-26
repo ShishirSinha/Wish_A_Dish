@@ -41,10 +41,7 @@ public class OrderOverviewActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rv7);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        MenuItemClass mi1 = new MenuItemClass("Paneer Butter Masala", 2, "Veg",320);
-        MenuItemClass mi2 = new MenuItemClass("Butter Naan", 1, "Chapati",400);
-        menuItems.add(mi1);
-        menuItems.add(mi2);
+        menuItems = (List<MenuItemClass>) getIntent().getSerializableExtra("list");
 
         adapter = new OrderOverviewAdapter(menuItems,this);
         recyclerView.setAdapter(adapter);

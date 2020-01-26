@@ -138,6 +138,10 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.ViewHo
         return mMenuItems.size();
     }
 
+    public List getListItems() {
+        return mMenuItems;
+    }
+
     public void removeAt(int position) {
         mMenuItems.remove(position);
         notifyItemRemoved(position);

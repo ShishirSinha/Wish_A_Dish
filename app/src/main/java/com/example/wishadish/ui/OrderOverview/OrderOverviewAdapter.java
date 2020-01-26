@@ -75,7 +75,12 @@ public class OrderOverviewAdapter extends RecyclerView.Adapter<OrderOverviewAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.itemnameTv.setText(mMenuItems.get(position).getmItemName());
         holder.rateTv.setText("Rate :   ₹"+mMenuItems.get(position).getmCost());
-        holder.typeTv.setText(mMenuItems.get(position).getType());
+
+        if(mMenuItems.get(position).getType() == "0")
+            holder.typeTv.setText("VEG");
+        else if(mMenuItems.get(position).getType() == "1")
+            holder.typeTv.setText("NON-VEG");
+
         holder.quantityTv.setText("Quantity :   "+mMenuItems.get(position).getmQuantity());
     }
 
