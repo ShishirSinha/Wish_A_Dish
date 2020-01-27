@@ -36,7 +36,7 @@
         <RelativeLayout
             android:id="@+id/rel_image"
             android:layout_width="wrap_content"
-            android:layout_height="160dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="5dp">
 
 <!--            <TextView-->
@@ -73,10 +73,10 @@
 
             <TextView
                 android:id="@+id/green_oval"
-                android:layout_marginTop="50dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginStart="0dp"
                 android:layout_below="@id/yellow_circle"
-                android:layout_width="300dp"
+                android:layout_width="320dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="-80dp"
                 android:background="@drawable/circle"
@@ -84,12 +84,13 @@
 
             <ImageView
                 android:id="@+id/food_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="280dp"
+                android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/pink_flowers" />
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="-70dp"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/food_pic" />
 
         </RelativeLayout>
 
@@ -98,7 +99,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.5"
+        android:layout_weight="2.2"
         android:orientation="vertical"
         android:descendantFocusability="beforeDescendants"
         android:focusableInTouchMode="true">
@@ -160,7 +161,6 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:paddingEnd="20dp"
-            android:gravity="center"
             android:layout_marginStart="40dp"
             android:layout_marginTop="6dp"
             android:layout_marginEnd="40dp"
@@ -185,7 +185,6 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:paddingEnd="20dp"
-            android:gravity="center"
             android:layout_marginStart="40dp"
             android:layout_marginTop="6dp"
             android:layout_marginEnd="40dp"
