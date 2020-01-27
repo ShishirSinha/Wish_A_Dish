@@ -149,15 +149,22 @@ public class TotalBillsFragment extends Fragment {
             }
         }) {
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                HashMap<String, String> params = new HashMap<>();
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
 
                 SharedPreferences sharedPreferences = getContext().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-                String ACCESS_TOKEN = sharedPreferences.getString(EMP_TOKEN,"");
-                params.put("Content-Type", "application/json; charset=UTF-8");
+                String ACCESS_TOKEN = sharedPreferences.getString(EMP_TOKEN, "");
+                params.put("Content-Type", "application/x-www-form-urlencoded");
                 params.put("x-access-token", ACCESS_TOKEN);
 
-                Log.e("x-access-token", "It is = "+ACCESS_TOKEN);
+                Log.e("x-access-token", "It is = " + ACCESS_TOKEN);
+
+                return params;
+            }
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<>();
 
                 return params;
             }

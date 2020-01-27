@@ -2,7 +2,9 @@ package com.example.wishadish.ui.LoginPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,6 +29,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.wishadish.LoginSessionManager.EMP_TOKEN;
+import static com.example.wishadish.LoginSessionManager.PREF_NAME;
 import static com.example.wishadish.ui.Reports.ReportsFragment.BASE_URL;
 import static com.example.wishadish.ui.Reports.ReportsFragment.NO_OF_RETRY;
 import static com.example.wishadish.ui.Reports.ReportsFragment.RETRY_SECONDS;
@@ -139,6 +143,20 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this,"Error : verifyCredentials() !", Toast.LENGTH_SHORT).show();
             }
         }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+
+                SharedPreferences sharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+                String ACCESS_TOKEN = sharedPreferences.getString(EMP_TOKEN, "");
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                params.put("x-access-token", ACCESS_TOKEN);
+
+                Log.e("x-access-token", "It is = " + ACCESS_TOKEN);
+
+                return params;
+            }
 
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
