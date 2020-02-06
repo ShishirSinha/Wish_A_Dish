@@ -1,4 +1,4 @@
-package com.example.wishadish;
+package com.example.wishadish.ui.Bills;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.wishadish.CurrentOrderClass;
+import com.example.wishadish.R;
 import com.example.wishadish.ui.OrderOverview.OrderOverviewActivity;
 
 import java.util.List;

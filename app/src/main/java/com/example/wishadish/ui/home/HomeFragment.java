@@ -36,7 +36,6 @@ import com.example.wishadish.DataBases.AppExecutors;
 import com.example.wishadish.DataBases.CompleteMenuTable;
 import com.example.wishadish.DataBases.MenuDb;
 import com.example.wishadish.MainActivity;
-import com.example.wishadish.MenuItemAdapter;
 import com.example.wishadish.MenuItemClass;
 import com.example.wishadish.R;
 import com.example.wishadish.TableInfoClass;
@@ -98,9 +97,9 @@ public class HomeFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
+    public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        final View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         ((MainActivity) getActivity()).setActionBarTitle("Home");
 
@@ -167,11 +166,13 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                    int size = ((MenuItemAdapter) recyclerView1.getAdapter()).getItemCount();
-                    for (int i = 0; i < size; i++) {
-                        // Get each selected item
-                        // Do something with the item like save it to a selected items array.
-                    }
+//                    int size = ((MenuItemAdapter) recyclerView1.getAdapter()).getItemCount();
+//                    for (int i = 0; i < size; i++) {
+//                        // Get each selected item
+//                        // Do something with the item like save it to a selected items array.
+//                    }
+
+                    String totaAmt = ((TextView) root.findViewById(R.id.totalAmountTv)).getText().toString();
 
                     List<MenuItemClass> itemsInList = new ArrayList<>();
                     itemsInList = ((MenuItemAdapter) recyclerView1.getAdapter()).getListItems();
@@ -180,6 +181,7 @@ public class HomeFragment extends Fragment {
 
                     Intent intent = new Intent(getActivity(), OrderOverviewActivity.class);
                     intent.putExtra("list", (Serializable) itemsInList);
+                    intent.putExtra("totAmt", totaAmt);
                     startActivity(intent);
                 }
             });
@@ -284,7 +286,7 @@ public class HomeFragment extends Fragment {
 
     private void displaySearchResultFromPreviousList(String itemname) {
         filterProductArray(itemname);
-        searchLV.setAdapter(new SearchResultsAdapter(getActivity(), filteredProductResults, searchLV, adapter1));
+        searchLV.setAdapter(new SearchResultsAdapter(getActivity(), filteredProductResults, searchLV, adapter1, searchView));
     }
 
     private void displaySearchResults(final String itemname) {
@@ -302,11 +304,13 @@ public class HomeFragment extends Fragment {
 
                         for (int i = 0; i < completeMenuList.size(); i++) {
                             String name = completeMenuList.get(i).getName();
-                            Double rate = Double.parseDouble(completeMenuList.get(i).getRate());
+                            double rate = Double.parseDouble(completeMenuList.get(i).getRate());
                             String type = completeMenuList.get(i).getVeg();
-                            int id = Integer.parseInt(completeMenuList.get(i).getId());
+                            String id = completeMenuList.get(i).getId();
+                            String unit = completeMenuList.get(i).getUnit();
+                            double gst_per = Double.parseDouble(completeMenuList.get(i).getGst_per());
 
-                            MenuItemClass tempItem = new MenuItemClass(name, 0, type, rate);
+                            MenuItemClass tempItem = new MenuItemClass(name, 0, type, rate, id, unit, gst_per);
 
                             String matchfound = "N";
 
@@ -325,7 +329,7 @@ public class HomeFragment extends Fragment {
                         //calling this method to filter the search results from productResults and move them to
                         //filteredProductResults
                         filterProductArray(itemname);
-                        searchLV.setAdapter(new SearchResultsAdapter(getActivity(), filteredProductResults, searchLV, adapter1));
+                        searchLV.setAdapter(new SearchResultsAdapter(getActivity(), filteredProductResults, searchLV, adapter1, searchView));
                     }
                 });
             }

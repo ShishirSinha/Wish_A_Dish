@@ -1,11 +1,13 @@
-package com.example.wishadish;
+package com.example.wishadish.ui.StartPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
+import com.example.wishadish.LoginSessionManager;
+import com.example.wishadish.MainActivity;
+import com.example.wishadish.R;
 import com.example.wishadish.ui.LoginPage.LoginActivity;
 
 public class StartActivity extends AppCompatActivity {

@@ -2,7 +2,6 @@ package com.example.wishadish.ui.home;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.nfc.Tag;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,13 +9,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.wishadish.MenuItemAdapter;
 import com.example.wishadish.MenuItemClass;
 import com.example.wishadish.R;
 
@@ -32,9 +27,10 @@ public  class SearchResultsAdapter extends BaseAdapter {
     Typeface type;
     Context context;
     ListView listView;
+    SearchView searchView;
     private MenuItemAdapter adapter;
 
-    public SearchResultsAdapter(Context context, List<MenuItemClass> menuItemDetails, ListView listView, MenuItemAdapter adapter) {
+    public SearchResultsAdapter(Context context, List<MenuItemClass> menuItemDetails, ListView listView, MenuItemAdapter adapter, SearchView searchView) {
 
         layoutInflater = LayoutInflater.from(context);
         this.menuItemDetails = new ArrayList<>();
@@ -43,6 +39,7 @@ public  class SearchResultsAdapter extends BaseAdapter {
         this.count= menuItemDetails.size();
         this.context = context;
         this.listView = listView;
+        this.searchView = searchView;
         this.adapter = adapter;
     }
 
@@ -99,7 +96,8 @@ public  class SearchResultsAdapter extends BaseAdapter {
 //                notifyDataSetChanged();
                 Log.e("Add Button Clicked","*************************************************");
                 Log.e("search Adapter",""+tempProduct.getmItemName()+"  "+1+"  "+ tempProduct.getType()+"  "+ tempProduct.getmCost());
-                adapter.addItem(new MenuItemClass(tempProduct.getmItemName(),1, tempProduct.getType(), tempProduct.getmCost()));
+                adapter.addItem(new MenuItemClass(tempProduct.getmItemName(),1, tempProduct.getType(), tempProduct.getmCost(), tempProduct.getmId(), tempProduct.getmUnit(), tempProduct.getmGstPercent()));
+                searchView.setQuery("", false);
                 listView.setVisibility(View.GONE);
             }
         });

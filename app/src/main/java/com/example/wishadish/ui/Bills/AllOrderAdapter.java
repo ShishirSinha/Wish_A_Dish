@@ -1,4 +1,4 @@
-package com.example.wishadish;
+package com.example.wishadish.ui.Bills;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,8 +17,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wishadish.ui.Bills.CancelPaymentFrag;
-import com.example.wishadish.ui.Bills.UpdatePaymentFrag;
+import com.example.wishadish.AllOrderClass;
+import com.example.wishadish.R;
 
 import java.util.List;
 

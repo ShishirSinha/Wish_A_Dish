@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,7 +29,6 @@ import com.example.wishadish.AlarmReceiver;
 import com.example.wishadish.MainActivity;
 import com.example.wishadish.Utility.MySingleton;
 import com.example.wishadish.R;
-import com.example.wishadish.WaitListAdapter;
 import com.example.wishadish.WaitListClass;
 
 import org.json.JSONArray;

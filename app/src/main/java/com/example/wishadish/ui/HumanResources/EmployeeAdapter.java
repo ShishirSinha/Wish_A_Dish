@@ -1,4 +1,4 @@
-package com.example.wishadish;
+package com.example.wishadish.ui.HumanResources;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,11 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.example.wishadish.EmployeeClass;
+import com.example.wishadish.R;
 
 import java.util.List;
 

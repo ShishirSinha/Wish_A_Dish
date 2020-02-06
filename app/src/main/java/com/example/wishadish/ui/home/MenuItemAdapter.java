@@ -1,4 +1,4 @@
-package com.example.wishadish;
+package com.example.wishadish.ui.home;
 
 import android.content.Context;
 import android.util.Log;
@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.wishadish.MenuItemClass;
+import com.example.wishadish.R;
 
 import java.util.List;
 

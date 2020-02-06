@@ -55,6 +55,8 @@ public class SettingsFragment extends Fragment {
     SharedPreferences pref;
     public static final String SETTINGS_PREF   = "LoginPreference";
     public static final String TABLE_MODE = "tableMode";
+    public static final String SERVICE_CHARGE = "serviceCharge";
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

@@ -1,23 +1,19 @@
-package com.example.wishadish;
+package com.example.wishadish.ui.Waitlist;
 
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wishadish.ui.Bills.UpdatePaymentFrag;
+import com.example.wishadish.R;
+import com.example.wishadish.WaitListClass;
 
 import java.util.List;
 
